@@ -3,6 +3,8 @@ from django.contrib import admin
 
 from homes.views import HomePageView, CustomRegistrationView
 
+admin.site.site_header = 'Django Property'
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^sales/', include('homes_for_sale.urls', namespace='sales')),
