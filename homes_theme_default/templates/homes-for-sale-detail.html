@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% load static %}
+{% load humanize %}
+{% load i18n %}
+{% block stylesheets %}
+  {{block.super}}
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.0.10/font-awesome-animation.min.css">
+{% endblock %}
+{% block content %}
+    {% include 'includes/search-form.html' %}
+    <section class="section--property-detail">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-8">
+                    <article class="article--property">
+                        <header class="article--property__header">
+                          <h2 class="article--property__title">{{object.title}}<span class="article--property__actions"><a href="{% url 'json:favourite' 'sale' object.slug %}" title="{% if favourited %}Click to unfavourite this property{% else %}Click to favourite this property{%endif%}" class="toggle--link" data-active="fa-heart" data-inactive="fa-heart-o">{% if favourited %}<i class="fa fa-heart"></i>{% else %}<i class="fa fa-heart-o"></i>{% endif %}</a></span></h2>
+                          <h3 class="article--property__display-address">{{object.display_address}}<span class="article--property__price">{{object.get_qualifier_display}} &#163;{{object.price|floatformat|intcomma}}</span></h3>
+                        </header>
+                        {% include "includes/homes-for-sale-carousel.html" %}
+                        <div class="article--property__details">
+                          <ul class="nav nav-tabs" id="details" role="tablist">
+                            <li class="nav-item">
+                              <a class="nav-link active" id="description-tab" data-toggle="tab" href="#descriptiontab" role="tab" aria-controls="description" aria-expanded="true">Description</a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link" id="map-tab" data-toggle="tab" href="#maptab" role="tab" aria-controls="profile">Map &amp; Streetview</a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link" id="downloads-tab" data-toggle="tab" href="#downloadstab" role="tab" aria-controls="profile">Brochures &amp; Floorplans</a>
+                            </li>
+                          </ul>
+                          <div class="tab-content" id="detailsContent">
+                            <div class="tab-pane fade show active" id="descriptiontab" role="tabpanel" aria-labelledby="description-tab">
+                              {{object.details|linebreaks}}
+                            </div>
+                            <div class="tab-pane fade" id="maptab" role="tabpanel" aria-labelledby="map-tab">
+                              <div id="map" class="components--gmap"></div>
+                            </div>
+                            <div class="tab-pane fade" id="downloadstab" role="tabpanel" aria-labelledby="downloads-tab">
+                              {% if object.salemedia_set.count > 0 %}
+                                <ul class="components--media">
+                                {% for media in object.salemedia_set.all %}
+                                  <li>{{media.media_type}} - <a href="{{media.attachment.url}}" target="_blank">{{media}}</a></li>
+                                {% endfor %}
+                                </ul>
+                              {% else %}
+                                <p>{% trans 'Sorry, there are no downloads for this property' %}</p>
+                              {% endif %}
+                            </div>
+                          </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-sm-12 col-md-4">
+                  {% include "includes/homes-for-sale-search-button.html" %}
+                  {% include "includes/homes-for-sale-features.html" %}
+                  {% include "includes/homes-for-sale-branch.html" %}
+                  {% include "includes/homes-for-sale-contact-form.html" %}
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+{% block footer_scripts %}
+  {{block.super}}
+  <script src="{% static 'build/js/details.bundle.js' %}"></script>
+  <script>
+    var map;
+    function initMap(){
+      var location = {lat:{{object.location.y}}, lng:{{object.location.x}}};
+      map = new google.maps.Map(document.getElementById('map'), {
+        center: location,
+        zoom: 12
+      });
+      var marker = new google.maps.Marker({
+        position: location,
+        map: map,
+        title: "{{object.display_address}}"
+      });
+    }
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+      if ($(e.target).attr('id')){
+        initMap();
+      }
+    });
+  </script>
+  <script src="https://maps.googleapis.com/maps/api/js?key={{google}}" async defer></script>
+{% endblock %}

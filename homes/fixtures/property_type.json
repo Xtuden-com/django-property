@@ -1,0 +1,47 @@
+[
+  {
+	"model": "homes.propertytype",
+	"pk": 1,
+	"fields": {
+		"name": "House",
+		"slug": "house",
+		"status": 1
+	}
+  },
+  {
+	"model": "homes.propertytype",
+	"pk": 2,
+	"fields": {
+		"name": "Flat / Apartment",
+		"slug": "flat-apartment",
+		"status": 1
+	}
+  },
+  {
+	"model": "homes.propertytype",
+	"pk": 3,
+	"fields": {
+		"name": "Bungalow",
+		"slug": "bungalow",
+		"status": 1
+	}
+  },
+  {
+	"model": "homes.propertytype",
+	"pk": 4,
+	"fields": {
+		"name": "Land",
+		"slug": "land",
+		"status": 1
+	}
+  },
+  {
+	"model": "homes.propertytype",
+	"pk": 5,
+	"fields": {
+		"name": "Other",
+		"slug": "other",
+		"status": 1
+	}
+  }
+]

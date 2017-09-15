@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+{% load thumbnail %}
+{% load humanize %}
+{% load filter_tags %}
+{% block content %}
+    {% include 'includes/search-form.html' %}
+    <section class="section--search-extra">
+      <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-2">
+              <label style="margin-top:0.35rem">Distance</label>
+            </div>
+            <div class="col-xs-12 col-sm-7">
+                <form action="{% url 'lettings:distance' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6">
+                            {{distance.distance|add_css:'form-control'}}
+                        </div>
+                        <div class="col-xs-12 col-sm-6">
+                            <input type="submit" class="btn btn-primary btn-block" value="Update Search">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-xs-12 col-sm-3">
+              {% if subscribed %}
+                <a href="{% url 'user:subscribe' %}?{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}" class="btn btn-warning btn-block">Unsubscribe from Email Alerts</a>
+              {% else %}
+                <a href="{% url 'user:subscribe' %}?{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}" class="btn btn-success btn-block">Subscribe to Email Alerts</a>
+              {% endif %}
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+    <section class="section--search-results">
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            {% include 'includes/messages.html' %}
+            {% for property in object_list %}
+              <article class="article--search-result">
+                <div class="row">
+                  <div class="col-3">
+                    {% with property.lettingpicture_set.all|first as picture %}
+                      {% thumbnail picture.attachment "285x200" crop="center" as im %}
+                        <img class="d-block img-fluid" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{picture.caption}}" title="{{picture.caption}}">
+                      {% endthumbnail %}
+                    {% endwith %}
+                  </div>
+                  <div class="col-9">
+                    <h2 class="article--search-result__title"><a href="{% url 'lettings:detail' property.slug %}?{{ request.GET.urlencode }}">{{property.title}}</a></h2>
+                    <h3 class="article--search-result__display-address">{{ property.display_address }}<span class="article--search-result__rental">&#163;{{property.rental|floatformat|intcomma}} {{property.get_period_display}}</span></h3>
+                    <p>{{property.summary}}</p>
+                  </div>
+                </div>
+              </article>
+            {% empty %}
+              <article class="article--search-no-result">
+                <p>{% trans 'No properties were found for your search' %}</p>
+              </article>
+            {% endfor %}
+            {% include 'includes/pagination.html' %}
+          </div>
+        </div>
+      </div>
+    </section>
+{% endblock %}
+{% block footer_scripts%}
+  {{block.super}}
+  <script src="{% static 'build/js/salesearch.bundle.js' %}"></script>
+{% endblock %}

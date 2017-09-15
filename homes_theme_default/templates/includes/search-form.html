@@ -1,0 +1,54 @@
+<section class="section--search-form">
+  <form id="search_form" novalidate autocomplete="off" method="post">
+    <input autocomplete="false" name="hidden" type="text" style="display:none;">
+    {% csrf_token %}
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-sm-4">
+          <div class="form-group {%if form.search_type.errors%}has-danger{%endif%}">
+            <label>Search Type</label>
+            {{form.search_type}}
+          </div>
+        </div>
+        <div class="col-12 col-sm-4">
+          <div class="form-group {%if form.min_price.errors%}has-danger{%endif%}">
+            <label>Min Price</label>
+            {{form.min_price}}
+          </div>
+        </div>
+        <div class="col-12 col-sm-4">
+          <div class="form-group {%if form.max_price.errors%}has-danger{%endif%}">
+            <label>Max Price</label>
+            {{form.max_price}}
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 col-sm-4">
+          <div class="form-group autocomplete__container {%if form.location.errors%}has-danger{%endif%}">
+            <label>Location</label>
+            {{form.location}}
+            <div id="id_results" class="autocomplete__overlay" style="display:none;">&nbsp;</div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-4">
+          <div class="form-group {%if form.min_bedrooms.errors%}has-danger{%endif%}">
+            <label>Min Bedrooms</label>
+            {{form.min_bedrooms}}
+          </div>
+        </div>
+        <div class="col-12 col-sm-4">
+          <div class="form-group {%if form.property_type.errors%}has-danger{%endif%}">
+            <label>Property Type</label>
+            {{form.property_type}}
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <input type="submit" value="Search" class="btn btn-primary">
+        </div>
+      </div>
+    </div>
+  </form>
+</section>

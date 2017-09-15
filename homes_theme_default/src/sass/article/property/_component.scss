@@ -1,0 +1,30 @@
+.article--property{
+
+}
+.article--property__header{
+  margin-bottom:1rem;
+}
+.article--property__title{
+  font-size:1.5rem;
+  margin:0;
+  margin-bottom:0.5rem;
+}
+.article--property__display-address{
+  font-size:1rem;
+  margin:0;
+}
+.article--property__price{
+  display:block;
+  @media(min-width:768px){
+    float:right;
+    display:inline-block;
+  }
+}
+.article--property__actions{
+  float:right;
+  display:inline-block;
+}
+.article--property__details .tab-pane{
+  margin-top:1rem;
+  margin-bottom:1rem;
+}

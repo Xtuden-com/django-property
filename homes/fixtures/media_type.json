@@ -1,0 +1,29 @@
+[
+  {
+    "model": "homes.mediatype",
+    "pk": 1,
+    "fields": {
+      "name": "Brochure",
+      "slug": "brochure",
+      "status": 1
+    }
+  },
+  {
+    "model": "homes.mediatype",
+    "pk": 2,
+    "fields": {
+      "name": "Floor Plan",
+      "slug": "floor-plan",
+      "status": 1
+    }
+  },
+  {
+    "model": "homes.mediatype",
+    "pk": 3,
+    "fields": {
+      "name": "EPC",
+      "slug": "epc",
+      "status": 1
+    }
+  }
+]

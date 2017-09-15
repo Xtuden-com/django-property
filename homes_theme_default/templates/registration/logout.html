@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load filter_tags %}
+{% load inclusion_tags %}
+{% block content %}
+
+  {% page_header 'Logout' %}
+
+  <section class="section--account-page">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <p>{% trans 'You have been signed out. To sign in again click the button below' %}</p>
+          <p><a href="{% url 'auth_login' %}" class="btn btn-primary">{% trans 'Sign In' %}</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}

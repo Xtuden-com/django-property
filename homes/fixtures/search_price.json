@@ -1,0 +1,33 @@
+[{
+	"model": "homes.searchprice",
+	"pk": 2,
+	"fields": {
+		"type": 1,
+		"label": "100 PM",
+		"price": "100"
+	}
+}, {
+	"model": "homes.searchprice",
+	"pk": 3,
+	"fields": {
+		"type": 1,
+		"label": "200 PM",
+		"price": "200"
+	}
+}, {
+	"model": "homes.searchprice",
+	"pk": 4,
+	"fields": {
+		"type": 2,
+		"label": "40,000",
+		"price": "40000"
+	}
+}, {
+	"model": "homes.searchprice",
+	"pk": 5,
+	"fields": {
+		"type": 2,
+		"label": "50,000",
+		"price": "50000"
+	}
+}]

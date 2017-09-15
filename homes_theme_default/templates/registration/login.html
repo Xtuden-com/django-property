@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+{% load filter_tags %}
+{% load inclusion_tags %}
+{% block content %}
+
+  {% page_header 'Login' %}
+
+  <section class="section--account-page">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <p>{% trans 'Sign in to your account using the form below...' %}</p>
+          {% include "includes/errors.html" %}
+          <form novalidate method="post" action="{% url 'auth_login' %}">
+            <input type="hidden" name="next" value="{{ next }}" />
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="{{ form.username.id_for_label }}">{% trans 'Username' %}</label>
+              {{ form.username|add_css:'form-control' }}
+            </div>
+            <div class="form-group">
+              <label for="{{ form.password.id_for_label }}">{% trans 'Password' %}</label>
+              {{ form.password|add_css:'form-control' }}
+            </div>
+            <div class="form-group">
+              <input type="submit" value="{% trans 'Sign In' %}" class="btn btn-primary">
+            </div>
+          </form>
+          <ul class="components--account-menu">
+            <li><a href="{% url 'registration_register' %}">{% trans 'Register' %}</a></li>
+            <li><a href="{% url 'auth_password_reset' %}">{% trans 'Forgot your password?' %}</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}
+{% block footer_scripts%}
+    <script src="{% static 'build/js/extra.min.js' %}"></script>
+{% endblock %}

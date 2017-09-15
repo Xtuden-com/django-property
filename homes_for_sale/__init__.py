@@ -1,0 +1,1 @@
+default_app_config = 'homes_for_sale.apps.HomesForSaleConfig'

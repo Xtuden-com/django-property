@@ -1,0 +1,12 @@
+.components--user-favourites{
+  margin:0;
+  padding:0;
+  list-style-type:none;
+  margin-bottom:1rem;
+}
+.components--user-favourites li{
+  margin-bottom:0.5rem;
+}
+.components--user-favourites li:last-child{
+  margin-bottom:0;
+}

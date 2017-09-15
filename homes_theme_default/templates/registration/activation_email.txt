@@ -1,0 +1,15 @@
+{% load i18n %}
+
+{% trans "Hi" %} {{user}}
+
+{% blocktrans %}Thanks for registering with {{site}}{% endblocktrans %}
+
+{% trans "Please follow the link below in order to confirm your access to the site" %}
+
+http://{{site}}{% url 'registration_activate' activation_key %}
+
+{% blocktrans %}Please note you have only {{expiration_days}} days to complete this step{% endblocktrans %}
+
+{% trans "Thank You" %}
+
+{% trans "My Agency Website" %}

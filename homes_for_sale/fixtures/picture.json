@@ -1,0 +1,61 @@
+[{
+	"model": "homes_for_sale.salepicture",
+	"pk": 1,
+	"fields": {
+		"status": 1,
+		"created_at": "2017-08-30T15:34:28.023Z",
+		"updated_at": "2017-08-30T15:34:28.024Z",
+		"display_order": 1,
+		"caption": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+		"attachment": "pictures/1.jpg",
+		"property": 1
+	}
+}, {
+	"model": "homes_for_sale.salepicture",
+	"pk": 2,
+	"fields": {
+		"status": 1,
+		"created_at": "2017-08-30T15:34:45.694Z",
+		"updated_at": "2017-08-30T15:34:45.694Z",
+		"display_order": 2,
+		"caption": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+		"attachment": "pictures/2.jpg",
+		"property": 1
+	}
+}, {
+	"model": "homes_for_sale.salepicture",
+	"pk": 3,
+	"fields": {
+		"status": 1,
+		"created_at": "2017-08-30T15:34:57.695Z",
+		"updated_at": "2017-08-30T15:34:57.695Z",
+		"display_order": 1,
+		"caption": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+		"attachment": "pictures/3.jpg",
+		"property": 2
+	}
+}, {
+	"model": "homes_for_sale.salepicture",
+	"pk": 4,
+	"fields": {
+		"status": 1,
+		"created_at": "2017-08-30T15:35:10.906Z",
+		"updated_at": "2017-08-30T15:35:10.906Z",
+		"display_order": 2,
+		"caption": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+		"attachment": "pictures/4.jpg",
+		"property": 2
+	}
+}, {
+	"model": "homes_for_sale.salepicture",
+	"pk": 5,
+	"fields": {
+		"status": 1,
+		"created_at": "2017-08-30T15:35:10.906Z",
+		"updated_at": "2017-08-30T15:35:10.906Z",
+		"display_order": 1,
+		"caption": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+		"attachment": "pictures/4.jpg",
+		"property": 4
+	}
+}]

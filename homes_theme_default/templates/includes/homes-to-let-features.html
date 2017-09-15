@@ -1,0 +1,10 @@
+{% if object.lettingfeature_set.count > 0 %}
+<div class="components--features">
+  <h2>Features</h2>
+  <ul>
+  {% for feature in object.lettingfeature_set.all %}
+      <li>{{feature}}</li>
+  {% endfor%}
+  </ul>
+</div>
+{% endif %}

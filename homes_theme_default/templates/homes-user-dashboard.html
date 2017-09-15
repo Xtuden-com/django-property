@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load filter_tags %}
+{% load inclusion_tags %}
+{% block stylesheets %}
+  {{block.super}}
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+{% endblock %}
+{% block content %}
+  {% page_header 'Dashboard' %}
+  <section class="section--user-dashboard">
+      <div class="container">
+          <div class="row">
+              <div class="col-12">
+                {% include 'includes/messages.html' %}
+                <h3>{% trans 'Favourited Properties' %}</h3>
+                <p>{% trans 'Shown below are the properties you have favourited on the website' %}</p>
+                <h4>{%trans 'Sales' %}</h4>
+                {% if favourites.sale %}
+                  <p>{% trans 'Property for sale favourites' %}</p>
+                  <ul class="components--user-favourites">
+                  {% for favourite in favourites.sale %}
+                    <li><a href="{% url 'user:favourite' 'sale' favourite.property.slug %}" class="btn btn-primary btn-sm"><i class="fa fa-trash"></i></a>&nbsp;<a href="{% url 'sales:detail' favourite.property.slug %}">{{favourite.property}}</a></li>
+                  {% endfor %}
+                  </ul>
+                {% else %}
+                  <p>{% trans 'No property for sale favourites' %}</p>
+                {% endif %}
+                <h4>{% trans 'Lettings' %}</h4>
+                {% if favourites.letting %}
+                  <p>{% trans 'Property to let favourites' %}</p>
+                  <ul class="components--user-favourites">
+                    {% for favourite in favourites.letting %}
+                      <li><a href="{% url 'lettings:detail' favourite.property.slug %}">{{favourite.property}}</a><span><a href="{% url 'user:favourite' 'letting' favourite.property.slug %}"><i class="fa fa-trash"></i></a></span></li>
+                    {% endfor %}
+                  </ul>
+                {% else %}
+                  <p>{% trans 'No property to let favourites' %}</p>
+                {% endif %}
+                <h3>{% trans 'Property Alerts' %}</h3>
+                {% if alerts %}
+                  <p>{% trans 'Shown below are the alerts you have subscribed to on the website' %}</p>
+                  <ul class="components--user-alerts">
+                  {% for alert in alerts %}
+                      <li><a href="{{alert.criteria|link_criteria}}" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i></a>&nbsp;<a href="{{alert.criteria|delete_link_criteria}}" class="btn btn-primary btn-sm"><i class="fa fa-trash"></i></a>&nbsp;{{alert.criteria|format_criteria}}</li>
+                  {% endfor %}
+                  </ul>
+                {% else %}
+                  <p>{% trans 'No alerts added for your account' %}</p>
+                {% endif %}
+              </div>
+          </div>
+      </div>
+  </section>
+{% endblock %}

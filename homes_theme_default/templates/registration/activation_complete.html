@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load filter_tags %}
+{% load inclusion_tags %}
+{% block content %}
+
+  {% page_header 'Activation Complete' %}
+
+  <section class="section--account-page">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <p>{% trans 'Thank you, your account has been activated' %}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}

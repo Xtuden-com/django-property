@@ -1,0 +1,20 @@
+[
+  {
+    "model": "homes.propertytenure",
+    "pk": 1,
+    "fields": {
+      "name": "Freehold",
+      "slug": "freehold",
+      "status": 1
+    }
+  },
+  {
+    "model": "homes.propertytenure",
+    "pk": 2,
+    "fields": {
+      "name": "Leasehold",
+      "slug": "leasehold",
+      "status": 1
+    }
+  }
+]
