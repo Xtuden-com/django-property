@@ -1,6 +1,7 @@
 {% load humanize %}
 {% for property in properties %}
     {{property.title}}
+    {{property.get_qualifier_display}} &#163;{{property.price|floatformat|intcomma}}
     {{property.display_address}}
-    {{property.details|linebreaks}}
+    {{property.summary}}
 {% endfor %}
