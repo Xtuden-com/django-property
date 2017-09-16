@@ -1,0 +1,17 @@
+You've received the following contact submission from a visitor to your website...
+
+Property: {{property}}
+
+Title: {{title}}
+Forename: {{forename}}
+Surname: {{surname}}
+
+Message: {{message}}
+
+Telephone: {{telephone}}
+Email: {{email}}
+Country: {{country}}
+Postcode: {{postcode}}
+
+Send More Details: {{details}}
+Arrange Viewing: {{viewing}}

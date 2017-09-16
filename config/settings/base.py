@@ -175,8 +175,12 @@ LOGIN_REDIRECT_URL = '/user/dashboard/'
 # Google
 GOOGLE_MAPS_API_KEY=get_env_variable('GOOGLE_MAPS_API_KEY')
 
-# Email
+# Email Server
 EMAIL_HOST = get_env_variable('EMAIL_HOST')
 EMAIL_HOST_USER = get_env_variable('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = get_env_variable('EMAIL_HOST_PASSWORD')
 EMAIL_PORT = get_env_variable('EMAIL_PORT')
+
+# Email extra
+DEFAULT_FROM_EMAIL = get_env_variable('DEFAULT_FROM_EMAIL')
+DO_NOT_REPLY_EMAIL = get_env_variable('DO_NOT_REPLY_EMAIL')
