@@ -11,6 +11,7 @@ from .forms import SearchForm, CustomRegistrationForm
 from homes_for_sale.models import Sale
 from homes_to_let.models import Letting
 
+
 class BaseSearchPageView(FormView):
 
     logger = logging.getLogger('app')

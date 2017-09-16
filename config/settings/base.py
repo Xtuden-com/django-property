@@ -114,6 +114,11 @@ LOGGING = {
             'class': 'logging.FileHandler',
             'filename': os.path.join(BASE_DIR, '../logs/app.log') # Place outside of app location
         },
+        'email_file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, '../logs/email.log')  # Place outside of app location
+        },
     },
     'loggers': {
         'django': {
@@ -123,6 +128,11 @@ LOGGING = {
         },
         'app': {
             'handlers': ['app_file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'email': {
+            'handlers': ['email_file'],
             'level': 'DEBUG',
             'propagate': True,
         }
