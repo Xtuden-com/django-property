@@ -1,0 +1,4 @@
+{% for property in properties %}
+    {{property.pk}}
+    {{property.display_address}}
+{% endfor %}
