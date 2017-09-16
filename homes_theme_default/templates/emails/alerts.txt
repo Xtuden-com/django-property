@@ -1,4 +1,6 @@
+{% load humanize %}
 {% for property in properties %}
-    {{property.pk}}
+    {{property.title}}
     {{property.display_address}}
+    {{property.details|linebreaks}}
 {% endfor %}
