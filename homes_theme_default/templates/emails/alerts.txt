@@ -6,5 +6,5 @@ Latest Properties
 {{property.get_qualifier_display}} £{{property.price|floatformat|intcomma}}
 {{property.display_address}}
 {{property.summary}}
-{% if property.price %}{% url 'sales:detail' property.slug %}{% else %}{% url 'lettings:detail' property.slug %}{% endif %}
+{% if property.price %}http://0.0.0.0:8000{% url 'sales:detail' property.slug %}{% else %}http://0.0.0.0:8000{% url 'lettings:detail' property.slug %}{% endif %}
 {% endfor %}
