@@ -2,6 +2,11 @@
 Latest Properties
 
 {% for property in properties %}
+{% if property.price %}
+For Sale
+{% else %}
+To Let
+{% endif %}
 {{property.title}}
 {{property.get_qualifier_display}} £{{property.price|floatformat|intcomma}}
 {{property.display_address}}
