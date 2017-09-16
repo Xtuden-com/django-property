@@ -2,6 +2,7 @@ import logging
 
 from django.contrib.gis.geos import GEOSGeometry, GEOSException
 from django.contrib.gis.measure import D
+from django.contrib.sites.models import Site
 
 from homes.models import Alert
 from homes_for_sale.models import Sale
@@ -86,8 +87,12 @@ class Alerter(object):
         :param recipients: list of recipients to send to
         :param properties: queryset of properties
         """
+        domain = Site.objects.get_current().domain
         for recipient in recipients:
-            mailer = Emailer(self.subject, [recipient], self.from_email, None, {'properties':properties}, self.template)
+            mailer = Emailer(self.subject, [recipient], self.from_email, None, {
+                'site': domain,
+                'properties': properties
+            }, self.template)
             mailer.send()
 
     def process(self):
