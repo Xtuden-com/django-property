@@ -2,7 +2,6 @@ import logging
 
 from django.contrib.gis.geos import GEOSGeometry, GEOSException
 from django.contrib.gis.measure import D
-from django.conf import settings
 
 from homes.models import Alert
 from homes_for_sale.models import Sale
@@ -13,10 +12,17 @@ from homes.emailer import Emailer
 class Alerter(object):
     logger = logging.getLogger('management')
 
-    def __init__(self):
-        pass
+    def __init__(self, subject, from_email, template):
+        self.subject = subject
+        self.from_email = from_email
+        self.template = template
 
     def __get_point(self, criteria):
+        """
+        Returns a geo point for search
+        :param criteria: dictionary containing criteria for search
+        :return: point or boolean
+        """
         try:
             return GEOSGeometry('POINT(%s %s)' % (criteria.get('longitude'), criteria.get('latitude')), srid=4326)
         except GEOSException as ex:
@@ -25,6 +31,11 @@ class Alerter(object):
         return False
 
     def __get_lettings_search(self, criteria):
+        """
+        Get search queryset based on criteria passed
+        :param criteria: dictionary containing criteria for search
+        :return: LettingQuerySet
+        """
         lettings = Letting.filtered.published().unexpired()
         lettings = lettings.filter(
             price__range=(
@@ -39,6 +50,11 @@ class Alerter(object):
         return lettings
 
     def __get_sales_search(self, criteria):
+        """
+        Get search queryset based on criteria passed
+        :param criteria: dictionary containing criteria for search
+        :return: SaleQuerySet
+        """
         sales = Sale.filtered.published().unexpired()
         sales = sales.filter(
             price__range=(
@@ -53,6 +69,10 @@ class Alerter(object):
         return sales
 
     def __filter_alerts_to_send(self):
+        """
+        Function filters alerts to remove duplicates
+        :return: dictionary
+        """
         alerts_to_send = {}
         for alert in Alert.objects.all():
             if not alert.key in alerts_to_send:
@@ -61,12 +81,19 @@ class Alerter(object):
         return alerts_to_send
 
     def __send(self, recipients, properties):
+        """
+        Iterates recipients list and sends emails
+        :param recipients: list of recipients to send to
+        :param properties: queryset of properties
+        """
         for recipient in recipients:
-            #self, subject, recipient, from_email, reply_to, data, filename):
-            mailer = Emailer('Property Alerts', [recipient], settings.DO_NOT_REPLY_EMAIL, ['me@example.com'], {'properties':properties}, 'emails/alerts.txt')
+            mailer = Emailer(self.subject, [recipient], self.from_email, None, {'properties':properties}, self.template)
             mailer.send()
 
     def process(self):
+        """
+        Get alerts to send, iterate and get properties before sending them
+        """
         alerts_to_send = self.__filter_alerts_to_send()
         for key, config in alerts_to_send.iteritems():
             if config['criteria']['search_type'] == 'sales':

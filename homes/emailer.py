@@ -55,11 +55,13 @@ class Emailer(object):
         """
         content = self.__render_template()
         if content:
-            return self.__deliver(EmailMessage(
+            email = EmailMessage(
                 self.subject,
                 content,
                 self.from_email,
                 self.recipient,
-                reply_to=self.reply_to,
-            ))
+            )
+            if self.reply_to:
+                email.reply_to = self.reply_to
+            return self.__deliver(email)
         return False
