@@ -1,13 +1,12 @@
 import urllib, hashlib
 from urlparse import urlparse, parse_qsl
 
-from django.views.generic import TemplateView, ListView, DetailView, FormView, View
-from django.shortcuts import HttpResponseRedirect, reverse, get_object_or_404
-from django.contrib.gis.geos import GEOSGeometry
+from django.views.generic import TemplateView, ListView, DetailView, View
+from django.shortcuts import HttpResponseRedirect, reverse
+from django.contrib.gis.geos import GEOSGeometry,GEOSException
 from django.contrib.gis.measure import D
 from django.http import Http404
 from django.conf import settings
-from django.contrib.gis.geos import GEOSException
 
 from homes.forms import SearchForm
 from homes.views import BaseSearchPageView

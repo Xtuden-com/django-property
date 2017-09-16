@@ -20,6 +20,10 @@ class Emailer(object):
         self.data = data
 
     def __render_template(self):
+        """
+        Function renders a template by loading from disk and using self.data as context
+        :return: The template processed or boolean false if not processed
+        """
         template = get_template(self.filename)
         try:
             return template.render(self.data)
@@ -32,6 +36,11 @@ class Emailer(object):
         return False
 
     def __deliver(self, email):
+        """
+        Function will attempt to deliver email
+        :param email: an email address
+        :return: Boolean on whether successful
+        """
         try:
             return bool(email.send(fail_silently=False))
         except SMTPException as ex:
@@ -40,6 +49,10 @@ class Emailer(object):
         return False
 
     def send(self):
+        """
+        Function gets template content and attempts to send email
+        :return: Boolean on whether successful
+        """
         content = self.__render_template()
         if content:
             return self.__deliver(EmailMessage(
