@@ -12,10 +12,8 @@ from homes.emailer import Emailer
 class Alerter(object):
     logger = logging.getLogger('management')
 
-    def __init__(self, subject, from_email, template):
-        self.subject = subject
-        self.from_email = from_email
-        self.template = template
+    def __init__(self, config):
+        self.config = config
 
     def __get_point(self, criteria):
         """
@@ -87,7 +85,16 @@ class Alerter(object):
         :param properties: queryset of properties
         """
         for recipient in recipients:
-            mailer = Emailer(self.subject, [recipient], self.from_email, None, {'properties': properties}, self.template)
+            mailer = Emailer({
+                'subject': self.config['subject'],
+                'recipient': [recipient],
+                'from_email': self.config['from_email'],
+                'reply_to': None,
+                'data': {
+                    'properties': properties
+                },
+                'templates': self.config['templates']
+            })
             mailer.send()
 
     def process(self):
