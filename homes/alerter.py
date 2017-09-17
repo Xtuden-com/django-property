@@ -29,6 +29,12 @@ class Alerter(object):
         return False
 
     def __get_search(self, model, criteria):
+        """
+        Runs search against database using criteria provided
+        :param model: either sale or letting
+        :param criteria: dictionary
+        :return: LettingQuerySet or SaleQuerySet
+        """
         results = model.filtered.published().unexpired()
         results = results.filter(
             price__range=(
