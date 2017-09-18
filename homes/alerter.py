@@ -10,9 +10,9 @@ from homes.emailer import Emailer
 
 
 class Alerter(object):
-    logger = logging.getLogger('management')
 
     def __init__(self, config):
+        self.logger = logging.getLogger('management')
         self.config = config
 
     def __get_point(self, criteria):

@@ -8,9 +8,9 @@ from django.template import TemplateDoesNotExist, TemplateSyntaxError
 
 
 class Emailer(object):
-    logger = logging.getLogger('email')
 
     def __init__(self, config):
+        self.logger = logging.getLogger('email')
         self.config = config
 
     def __render_template(self, filename):
