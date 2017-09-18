@@ -244,4 +244,5 @@ class SEO(models.Model):
         return self.url
 
     class Meta:
-        pass
+        verbose_name = 'SEO'
+        verbose_name_plural = 'SEO'

@@ -13,7 +13,7 @@ def page_header(title):
 
 @register.inclusion_tag('templatetags/block.html', takes_context=True)
 def page_block(context, slug):
-    block = Block.objects.filter(slug=slug).first()
+    block = Block.objects.filter(slug=slug, status=Block.STATUS_CHOICE_ACTIVE).first()
     return {
         'block':block,
         'request': context['request']
