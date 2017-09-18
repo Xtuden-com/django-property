@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.gis',
     'mapwidgets',
     'sorl.thumbnail',
+    'ckeditor',
 ]
 
 MIDDLEWARE = [
@@ -199,3 +200,6 @@ DO_NOT_REPLY_EMAIL = get_env_variable('DO_NOT_REPLY_EMAIL')
 RECAPTCHA_SITE_KEY = get_env_variable('RECAPTCHA_SITE_KEY')
 RECAPTCHA_SECRET_KEY = get_env_variable('RECAPTCHA_SECRET_KEY')
 RECAPTCHA_VERIFICATION_URL = get_env_variable('RECAPTCHA_VERIFICATION_URL')
+
+# CKEditor
+AWS_QUERYSTRING_AUTH = False

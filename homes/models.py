@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from datetime import datetime
+from ckeditor.fields import RichTextField
 
 from django.contrib.gis.db import models
 from django.contrib.auth.models import User
@@ -86,8 +86,8 @@ class Property(Publishable, Expireable, Timestampable, models.Model):
     bedrooms = models.IntegerField()
     en_suites = models.IntegerField()
     receptions = models.IntegerField()
-    details = models.TextField()
-    summary = models.TextField(max_length=2000)
+    details = RichTextField()
+    summary = RichTextField(max_length=2000)
     garden = models.BooleanField(default=False)
     parking = models.BooleanField(default=False)
     retirement = models.BooleanField(default=False)
@@ -225,7 +225,7 @@ class Alert(Timestampable, models.Model):
 class Block(Publishable, models.Model):
     name = models.CharField(max_length=200)
     slug = models.SlugField(max_length=200, unique=True)
-    content = models.TextField()
+    content = RichTextField()
 
     def __str__(self):
         return self.name
