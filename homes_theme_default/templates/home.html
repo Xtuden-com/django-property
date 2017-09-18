@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 {% load thumbnail %}
+{% load inclusion_tags %}
 {% load humanize %}
 {% block content %}
     {% include 'includes/search-form.html' %}
@@ -8,6 +9,7 @@
         <div class="container">
             <div class="row">
                 <div class="col">
+                    {% page_block 'lorem' %}
                     <h2>Homes For Sale</h2>
                     {% for sale in latest.sale %}
                         {% if forloop.first %}<div class="row">{% endif %}

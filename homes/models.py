@@ -220,3 +220,15 @@ class Alert(Timestampable, models.Model):
 
     class Meta:
         pass
+
+
+class Block(Publishable, models.Model):
+    name = models.CharField(max_length=200)
+    slug = models.SlugField(max_length=200, unique=True)
+    content = models.TextField()
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        pass
