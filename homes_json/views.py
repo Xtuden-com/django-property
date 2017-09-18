@@ -1,7 +1,8 @@
-import json
+import json, requests, logging
+
+from requests.exceptions import RequestException
 
 from googleplaces import GooglePlaces, types
-from braces.views import LoginRequiredMixin, GroupRequiredMixin
 
 from django.views.generic import View
 from django.http import HttpResponse
@@ -14,6 +15,9 @@ from homes_for_sale.forms import SaleContactForm
 from homes_to_let.forms import LettingContactForm
 from homes_for_sale.models import Sale, SaleFavourite
 from homes_to_let.models import Letting, LettingFavourite
+
+
+logging.getLogger('app')
 
 
 class SearchPriceView(View):
@@ -58,25 +62,41 @@ class ContactView(View):
     def __get_single_message(self, label, name = ''):
         return [{'name':name, 'label':label}]
 
+    def __validate_recaptcha(self, token):
+        try:
+            response = requests.post(settings.RECAPTCHA_VERIFICATION_URL, data={
+                'secret': settings.RECAPTCHA_SECRET_KEY,
+                'response': token
+            })
+            data = response.json()
+            return data['success']
+        except RequestException as ex:
+            logging.error('Recaptcha validation error')
+            logging.error(ex)
+        return False
+
     def post(self, request, *args, **kwargs):
         contact_type = kwargs['type']
         form = SaleContactForm(request.POST) if contact_type == 'sale' else LettingContactForm(request.POST)
         message = {}
-        if form.is_valid():
-            if contact_type == 'sale':
-                obj = Sale.filtered.published().unexpired().filter(slug=request.POST.get('property')).first()
-            else:
-                obj = Letting.filtered.published().unexpired().filter(slug=request.POST.get('property')).first()
-            if obj:
-                form.instance.property = obj
-                if form.save():
-                    message = self.__get_success_response_object([])
+        if self.__validate_recaptcha(request.POST['token']):
+            if form.is_valid():
+                if contact_type == 'sale':
+                    obj = Sale.filtered.published().unexpired().filter(slug=request.POST.get('property')).first()
                 else:
-                    message = self.__get_failure_response_object(self.__get_single_message('Unable to save contact'))
+                    obj = Letting.filtered.published().unexpired().filter(slug=request.POST.get('property')).first()
+                if obj:
+                    form.instance.property = obj
+                    if form.save():
+                        message = self.__get_success_response_object([])
+                    else:
+                        message = self.__get_failure_response_object(self.__get_single_message('Unable to save contact'))
+                else:
+                    message = self.__get_failure_response_object(self.__get_single_message('Unable to find property'))
             else:
-                message = self.__get_failure_response_object(self.__get_single_message('Unable to find property'))
+                message = self.__get_validation_failure_response_object(form)
         else:
-            message = self.__get_validation_failure_response_object(form)
+            message = self.__get_failure_response_object(self.__get_single_message('Invalid captcha verification'))
         return HttpResponse(
             json.dumps(message),
             content_type='application/json'

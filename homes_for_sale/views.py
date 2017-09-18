@@ -82,6 +82,7 @@ class DetailPageView(BaseSearchPageView, DetailView):
          context['contact'] = SaleContactForm()
          context['favourited'] = self.__user_favorite()
          context['google'] = settings.GOOGLE_MAPS_API_KEY
+         context['recaptcha'] = settings.RECAPTCHA_SITE_KEY
          return context
 
     def get_queryset(self):

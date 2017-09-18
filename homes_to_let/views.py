@@ -5,6 +5,7 @@ from django.views.generic import TemplateView, ListView, DetailView, View
 from django.shortcuts import HttpResponseRedirect, reverse, Http404
 from django.contrib.gis.geos import GEOSGeometry, GEOSException
 from django.contrib.gis.measure import D
+from django.conf import settings
 
 from homes.forms import SearchForm
 from homes.views import BaseSearchPageView
@@ -76,10 +77,12 @@ class DetailPageView(BaseSearchPageView, DetailView):
         return False
 
     def get_context_data(self, **kwargs):
-         context = super(DetailPageView, self).get_context_data(**kwargs)
-         context['contact'] = LettingContactForm()
-         context['favourited'] = self.__is_user_favourite()
-         return context
+        context = super(DetailPageView, self).get_context_data(**kwargs)
+        context['contact'] = LettingContactForm()
+        context['favourited'] = self.__is_user_favourite()
+        context['google'] = settings.GOOGLE_MAPS_API_KEY
+        context['recaptcha'] = settings.RECAPTCHA_SITE_KEY
+        return context
 
     def get_queryset(self):
         return Letting.filtered.published().unexpired()

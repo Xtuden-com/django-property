@@ -26,7 +26,9 @@ Depends on environment variables as follows:
 * EMAIL_PORT
 * DEFAULT_FROM_EMAIL
 * DO_NOT_REPLY_EMAIL
-
+* RECAPTCHA_SITE_KEY
+* RECAPTCHA_SECRET_KEY
+* RECAPTCHA_VERIFICATION_URL
 
 Of the above DJANGO_SETTINGS_MODULE needs to be set to whichever
 settings file you are using for the site e.g. config.settings.local
@@ -47,6 +49,9 @@ The DEFAULT_FROM_EMAIL is the default email address used if you don't provide an
 
 The DO_NOT_REPLY_EMAIL is and address used for for emails you don't want
 people to reply to.
+
+The RECAPTCHA_* keys relate to site and secret keys and verification URL from Recaptcha and are 
+used to protect contact forms
 
 Styles etc
 -----

@@ -194,3 +194,8 @@ EMAIL_PORT = get_env_variable('EMAIL_PORT')
 # Email extra
 DEFAULT_FROM_EMAIL = get_env_variable('DEFAULT_FROM_EMAIL')
 DO_NOT_REPLY_EMAIL = get_env_variable('DO_NOT_REPLY_EMAIL')
+
+# Recaptcha
+RECAPTCHA_SITE_KEY = get_env_variable('RECAPTCHA_SITE_KEY')
+RECAPTCHA_SECRET_KEY = get_env_variable('RECAPTCHA_SECRET_KEY')
+RECAPTCHA_VERIFICATION_URL = get_env_variable('RECAPTCHA_VERIFICATION_URL')

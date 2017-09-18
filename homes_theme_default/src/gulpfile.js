@@ -14,15 +14,18 @@ const gulp = require('gulp'),
 
 const webpackConfig = {
   context: path.resolve(__dirname, './js'),
-	entry:{
-	  home: './home.js',
-	  salesearch: './salesearch.js',
-    details: './details.js'
-	},
-	output: {
-		path: path.resolve(__dirname, '../static/build/js'),
-		filename: '[name].bundle.js',
-	},
+  entry: {
+    home: './home.js',
+    salesearch: './salesearch.js',
+    details: './details.js',
+    form: './components/form.js',
+  },
+  output: {
+    path: path.resolve(__dirname, '../static/build/js'),
+    filename: '[name].bundle.js',
+    libraryTarget:'window',
+    library: '[name]',
+  },
   module: {
     rules: [
       {
@@ -30,7 +33,7 @@ const webpackConfig = {
         exclude: [/node_modules/],
         use: [{
           loader: 'babel-loader',
-          options: { presets: ['es2015'] },
+          options: {presets: ['es2015']},
         }],
       },
       {
@@ -38,12 +41,12 @@ const webpackConfig = {
         enforce: 'pre',
         loader: 'eslint-loader',
         options: {
-            emitWarning:true
-        }
-      }
+          emitWarning: true,
+        },
+      },
     ],
   },
-	plugins: [
+  plugins: [
     new webpack.optimize.CommonsChunkPlugin({
       name: 'commons',
       filename: 'commons.js',
@@ -53,31 +56,31 @@ const webpackConfig = {
     //  sourceMap:true
     //})
   ],
-}
+};
 
-gulp.task('static:img', function(){
-    return gulp.src('./img/**')
-      .pipe(gulp.dest('../static/build/img'));
+gulp.task('static:img', function () {
+  return gulp.src('./img/**')
+    .pipe(gulp.dest('../static/build/img'));
 });
 
-gulp.task('styles', function(){
+gulp.task('styles', function () {
   return gulp.src('./sass/**/*.scss')
-    .pipe(sass({outputStyle:'compressed'}).on('error',sass.logError))
+    .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
     .pipe(plumber())
     .pipe(cssnano())
     .pipe(pixrem())
-    .pipe(rename({suffix:'.min'}))
-    .pipe(gulp.dest('../static/build/css'))
+    .pipe(rename({suffix: '.min'}))
+    .pipe(gulp.dest('../static/build/css'));
 });
 
-gulp.task('scripts:app', function(){
+gulp.task('scripts:app', function () {
   return gulp.src('./js/app.js')
     .pipe(plumber())
     .pipe(webpackStream(webpackConfig, webpack))
-    .pipe(gulp.dest('../static/build/js'))
+    .pipe(gulp.dest('../static/build/js'));
 });
 
-gulp.task('scripts:extra', function(){
+gulp.task('scripts:extra', function () {
   return gulp.src([
     './node_modules/jquery/dist/jquery.js',
     './node_modules/tether/dist/js/tether.js',
@@ -86,7 +89,7 @@ gulp.task('scripts:extra', function(){
   ])
     .pipe(plumber())
     .pipe(concat('extra.js'))
-    //.pipe(uglify())
-    .pipe(rename({suffix:'.min'}))
-    .pipe(gulp.dest('../static/build/js'))
+  //.pipe(uglify())
+    .pipe(rename({suffix: '.min'}))
+    .pipe(gulp.dest('../static/build/js'));
 });

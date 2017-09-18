@@ -1,4 +1,5 @@
-webpackJsonp([1],{
+window["salesearch"] =
+webpackJsonp_name_([2],{
 
 /***/ 4:
 /***/ (function(module, exports, __webpack_require__) {

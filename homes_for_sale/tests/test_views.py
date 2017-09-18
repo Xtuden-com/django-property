@@ -240,6 +240,8 @@ class DetailPageViewTestCase(BaseTestCase):
         self.assertIn('contact', response.context_data)
         self.assertIn('favourited', response.context_data)
         self.assertIn('form', response.context_data)
+        self.assertIn('google', response.context_data)
+        self.assertIn('recaptcha', response.context_data)
 
     def test_get_context_keys_correct_type(self):
         """

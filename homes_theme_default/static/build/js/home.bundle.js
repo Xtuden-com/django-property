@@ -1,4 +1,5 @@
-webpackJsonp([2],{
+window["home"] =
+webpackJsonp_name_([3],{
 
 /***/ 3:
 /***/ (function(module, exports, __webpack_require__) {

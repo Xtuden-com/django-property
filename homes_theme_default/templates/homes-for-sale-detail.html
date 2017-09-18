@@ -64,9 +64,10 @@
     </section>
 {% endblock %}
 {% block footer_scripts %}
-  {{block.super}}
-  <script src="{% static 'build/js/details.bundle.js' %}"></script>
-  <script>
+    {{block.super}}
+    <script src="{% static 'build/js/details.bundle.js' %}"></script>
+    <script src="{% static 'build/js/form.bundle.js' %}"></script>
+    <script>
     var map;
     function initMap(){
       var location = {lat:{{object.location.y}}, lng:{{object.location.x}}};
@@ -80,11 +81,16 @@
         title: "{{object.display_address}}"
       });
     }
+    function submitForm(token){
+        var form = document.querySelector('.forms--contact');
+        window.form.default.handleFormSubmit(form, token);
+    }
     $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
       if ($(e.target).attr('id')){
         initMap();
       }
     });
-  </script>
-  <script src="https://maps.googleapis.com/maps/api/js?key={{google}}" async defer></script>
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key={{google}}" async defer></script>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
 {% endblock %}

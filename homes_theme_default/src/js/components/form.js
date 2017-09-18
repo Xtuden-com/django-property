@@ -1,9 +1,9 @@
 import Ajax from './ajax';
 import Validator from './validator';
 
-export default class Form{
+export default class Form {
 
-  static hideAlert(form){
+  static hideAlert(form) {
     let alert = form.querySelector('.alert');
     if (!alert) return;
     alert.style.display = 'none';
@@ -11,7 +11,7 @@ export default class Form{
     alert.innerHTML = '';
   }
 
-  static showAlert(form, status, messages){
+  static showAlert(form, status, messages) {
     let alert = form.querySelector('.alert');
     if (!alert) return;
     alert.style.display = 'block';
@@ -26,57 +26,42 @@ export default class Form{
     });
   }
 
-  static getFormInputsAsData(form){
+  static getFormInputsAsData(form, token) {
     const elements = form.querySelectorAll('input,select,textarea');
     const data = [];
     elements.forEach(el => {
-      if (el.type === 'checkbox'){
+      if (el.type === 'checkbox') {
         data.push(encodeURIComponent(el.name) + '=' + encodeURIComponent(el.checked));
-      }else{
+      } else {
         data.push(encodeURIComponent(el.name) + '=' + encodeURIComponent(el.value));
       }
     });
+    data.push(`token=${token}`);
     return data.join('&').replace(/%20/g, '+');
   }
 
-  static handleFormSubmit(form){
+  static handleFormSubmit(form, token) {
     Form.hideAlert(form); // remove any previous alerts
     const errors = Validator.validate(form); // Carry out validation
-    if (errors.length > 0){
+    if (errors.length > 0) {
       Form.showAlert(form, 'alert-danger', errors);
-    }else{
-      Ajax.postAjax(form.action, Form.getFormInputsAsData(form)) // Url based on submitted form action
+    } else {
+      Ajax.postAjax(form.action, Form.getFormInputsAsData(form, token)) // Url based on submitted form action
         .then(JSON.parse)
-        .then(function(data){
-          if (data.status === 'success'){
-            Form.showAlert(form, 'alert-success', [{name:'', label:'Form submitted successfully'}]);
+        .then(function (data) {
+          if (data.status === 'success') {
+            Form.showAlert(form, 'alert-success', [{name: '', label: 'Form submitted successfully'}]);
             setTimeout(() => {
               Form.hideAlert(form);
-            },3000);
+            }, 3000);
             form.reset();
-          }else{
+          } else {
             Form.showAlert(form, 'alert-danger', data.messages);
           }
         })
         .catch(err => console.error(err));
     }
-    form.elements['submit'].disabled = false;
-    form.elements['submit'].innerHTML = 'Send Message';
+    form.elements['send'].disabled = false;
+    form.elements['send'].innerHTML = 'Send Message';
   }
-
-  static addSubmitHandler(){
-
-    let forms = document.querySelectorAll('.forms--contact');
-
-    forms.forEach(function(form){
-      form.addEventListener('submit', function(e){
-        e.preventDefault();
-        this.elements['submit'].disabled = true;
-        this.elements['submit'].innerHTML = '<i class="fa fa-spinner faa-spin animated"></i> Send Message';
-        Form.handleFormSubmit(this);
-      });
-    });
-
-  }
-
 }
