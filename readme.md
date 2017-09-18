@@ -106,8 +106,7 @@ What next
 As said, work in progress. The following are next...
 
 * Additional tests for JS components already built
-* Add emailing functionality based on alerts subscribed to
-* Add frontpage functionality to feature property / latest property
+* Tests for notification emailer and alert emailer
 * Add pages for estate agent / branches listing property
 * Add some captcha and additional protection on contact form
 * +++
