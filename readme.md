@@ -112,8 +112,9 @@ As said, work in progress. The following are next...
 
 * Additional tests for JS components already built
 * Tests for notification emailer and alert emailer
+* More tests, refactor ContactView post method in homes_json as a bit ugly & nested elses
 * Add pages for estate agent / branches listing property
-* Add some captcha and additional protection on contact form
+* Tidy up
 * +++
 
 License
