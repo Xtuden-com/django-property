@@ -6,7 +6,7 @@ from django.contrib.gis.db import models
 
 from mapwidgets.widgets import GooglePointFieldWidget
 
-from homes.models import Block, SearchPrice, Branch, PropertyTenure, PropertyType, Alert, MediaType
+from homes.models import Block, SEO, SearchPrice, Branch, PropertyTenure, PropertyType, Alert, MediaType
 
 
 class SearchPriceAdmin(admin.ModelAdmin):
@@ -59,10 +59,16 @@ class BlockAdmin(admin.ModelAdmin):
     list_display = ('name', 'slug')
     fields = ('name','slug','content','status')
 
+
+class SEOAdmin(admin.ModelAdmin):
+    list_display = ('url', 'title')
+
+
 admin.site.register(SearchPrice, SearchPriceAdmin)
 admin.site.register(Branch, BranchAdmin)
 admin.site.register(PropertyType, PropertyTypeAdmin)
 admin.site.register(PropertyTenure, PropertyTenureAdmin)
 admin.site.register(MediaType, MediaTypeAdmin)
 admin.site.register(Block, BlockAdmin)
+admin.site.register(SEO, SEOAdmin)
 admin.site.register(Alert)

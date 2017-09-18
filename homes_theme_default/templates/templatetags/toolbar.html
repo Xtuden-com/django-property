@@ -1,0 +1,13 @@
+{% if request.user.is_authenticated and request.user.is_staff %}
+<div class="admin--toolbar-page">
+    <ul class="nav flex-column">
+        <li class="nav-item">
+            {% if instance %}
+                <a class="nav-link" href="{% url 'admin:homes_seo_change' instance.pk %}"><i class="fa fa-globe"></i></a>
+            {% else %}
+                <a class="nav-link" href="{% url 'admin:homes_seo_add' %}?url={{ request.path }}"><i class="fa fa-globe"></i></a>
+            {% endif %}
+        </li>
+    </ul>
+</div>
+{% endif %}

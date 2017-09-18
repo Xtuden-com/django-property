@@ -232,3 +232,16 @@ class Block(Publishable, models.Model):
 
     class Meta:
         pass
+
+
+class SEO(models.Model):
+    url = models.CharField(max_length=1000, unique=True)
+    title = models.CharField(max_length=100)
+    keywords = models.CharField(max_length=500)
+    description = models.TextField(max_length=500)
+
+    def __str__(self):
+        return self.url
+
+    class Meta:
+        pass

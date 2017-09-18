@@ -1,5 +1,6 @@
 {% load static %}
 {% load filter_tags %}
+{% load inclusion_tags %}
 {% load i18n %}
 <!DOCTYPE html>
 <html lang="en">
@@ -10,48 +11,52 @@
         {% block meta %}{% endblock %}
         {% block stylesheets %}
         <link rel="stylesheet" type="text/css" href="{% static 'build/css/style.min.css' %}">
-        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css"
+              href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         {% endblock %}
         {% block header_scripts %}
         <script src="{% static 'build/js/commons.js' %}"></script>
         {% endblock %}
     </head>
     <body>
-      <nav class="navbar navbar-expand-lg navbar-light bg-faded">
+    <nav class="navbar navbar-expand-lg navbar-light bg-faded">
         <div class="container">
-          <a class="navbar-brand" href="/">{% trans 'My Agency Website' %}</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-              <li class="nav-item active"><a class="nav-link" href="/">{% trans 'Home' %} <span class="sr-only">(current)</span></a></li>
-              {% if user.is_authenticated %}
-                <li class="nav-item"><a class="nav-link" href="/user/dashboard">{% trans 'Dashboard' %}</a></li>
-                  {% if request.user.is_staff %}
-                      <li class="nav-item"><a class="nav-link" href="{% url 'admin:index' %}">Admin</a></li>
-                  {% endif %}
-                  <li class="nav-item"><a class="nav-link" href="/accounts/logout">{% trans 'Logout' %}</a></li>
-              {% else %}
-                <li class="nav-item"><a class="nav-link" href="/accounts/login">{% trans 'Login' %}</a></li>
-                <li class="nav-item"><a class="nav-link" href="/accounts/register">{% trans 'Register' %}</a></li>
-              {% endif %}
-            </ul>
-          </div>
-        </div>
-      </nav>
-      {% block content %}{% endblock %}
-      <section class="section--footer">
-        <div class="container">
-          <div class="row">
-            <div class="col-12">
-              <p>My Agency Website&nbsp;|&nbsp;<a href="">Website Link</a></p>
+            <a class="navbar-brand" href="/">{% trans 'My Agency Website' %}</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item active"><a class="nav-link" href="/">{% trans 'Home' %} <span class="sr-only">(current)</span></a>
+                    </li>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item"><a class="nav-link" href="/user/dashboard">{% trans 'Dashboard' %}</a></li>
+                    {% if request.user.is_staff %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'admin:index' %}">Admin</a></li>
+                    {% endif %}
+                    <li class="nav-item"><a class="nav-link" href="/accounts/logout">{% trans 'Logout' %}</a></li>
+                    {% else %}
+                    <li class="nav-item"><a class="nav-link" href="/accounts/login">{% trans 'Login' %}</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/accounts/register">{% trans 'Register' %}</a></li>
+                    {% endif %}
+                </ul>
             </div>
-          </div>
         </div>
-      </section>
-      {% block footer_scripts%}
-        <script src="{% static 'build/js/extra.min.js' %}"></script>
-      {% endblock %}
+    </nav>
+    {% block content %}{% endblock %}
+    <section class="section--footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <p>My Agency Website&nbsp;|&nbsp;<a href="">Website Link</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+    {% block footer_scripts%}
+    <script src="{% static 'build/js/extra.min.js' %}"></script>
+    {% endblock %}
+    {% page_toolbar %}
     </body>
 </html>
