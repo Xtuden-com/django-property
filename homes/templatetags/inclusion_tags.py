@@ -26,3 +26,11 @@ def page_toolbar(context):
         'instance': SEO.objects.filter(url=context['request'].path).first(),
         'request': context['request']
     }
+
+
+@register.inclusion_tag('templatetags/meta.html', takes_context=True)
+def page_meta(context):
+    return{
+        'instance': SEO.objects.filter(url=context['request'].path).first(),
+        'request': context['request']
+    }

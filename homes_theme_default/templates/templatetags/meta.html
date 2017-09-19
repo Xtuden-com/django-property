@@ -1,0 +1,9 @@
+{% if instance %}
+    <title>{{ instance.title }}</title>
+    <meta name="keywords" content="{{ instance.keywords }}">
+    <meta name="description" content="{{ instance.description }}">
+{% else %}
+    <title>Website</title>
+    <meta name="keywords" content="Website Keywords">
+    <meta name="description" content="Website Description">
+{% endif %}
