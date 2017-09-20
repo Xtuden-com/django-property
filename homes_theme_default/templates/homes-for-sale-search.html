@@ -1,8 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
 {% load i18n %}
-{% load thumbnail %}
-{% load humanize %}
 {% load filter_tags %}
 {% block content %}
   {% include 'includes/search-form.html' %}
@@ -10,7 +8,7 @@
     <div class="container">
       <div class="row">
           <div class="col-xs-12 col-sm-2">
-            <label style="margin-top:0.35rem">Distance</label>
+            <label style="margin-top:0.35rem">{%  trans 'Distance' %}</label>
           </div>
           <div class="col-xs-12 col-sm-7">
             <form action="{% url 'sales:distance' %}" method="POST">
@@ -20,16 +18,16 @@
                         {{distance.distance|add_css:'form-control'}}
                     </div>
                     <div class="col-xs-12 col-sm-6">
-                        <input type="submit" class="btn btn-primary btn-block" value="Update Search">
+                        <input type="submit" class="btn btn-primary btn-block" value="{% trans 'Update' %}">
                     </div>
                 </div>
             </form>
           </div>
           <div class="col-xs-12 col-sm-3">
             {% if subscribed %}
-              <a href="{% url 'user:subscribe' %}?{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}" class="btn btn-warning btn-block">Unsubscribe</a>
+              <a href="{% url 'user:subscribe' %}?{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}" class="btn btn-warning btn-block">{% trans 'Unsubscribe' %}</a>
             {% else %}
-              <a href="{% url 'user:subscribe' %}?{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}" class="btn btn-success btn-block">Subscribe</a>
+              <a href="{% url 'user:subscribe' %}?{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}" class="btn btn-success btn-block">{% trans 'Subscribe' %}</a>
             {% endif %}
           </div>
         </form>
@@ -42,22 +40,7 @@
         <div class="col">
           {% include 'includes/messages.html' %}
           {% for property in object_list %}
-            <article class="article--search-result">
-              <div class="row">
-                <div class="col-xs-12 col-sm-3">
-                  {% with property.salepicture_set.all|first as picture %}
-                    {% thumbnail picture.attachment "285x200" crop="center" as im %}
-                      <img class="d-block img-fluid" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{picture.caption}}" title="{{picture.caption}}">
-                    {% endthumbnail %}
-                  {% endwith %}
-                </div>
-                <div class="col-xs-12 col-sm-9">
-                  <h2 class="article--search-result__title"><a href="{% url 'sales:detail' property.slug %}?{{ request.GET.urlencode }}">{{property.title}}</a></h2>
-                  <h3 class="article--search-result__display-address">{{ property.display_address }}<span class="article--search-result__price">{{property.get_qualifier_display}} &#163;{{property.price|floatformat|intcomma}}</span></h3>
-                  <p>{{property.summary}}</p>
-                </div>
-              </div>
-            </article>
+              {% include "includes/homes-for-sale-search-result.html" %}
           {% empty %}
             <article class="article--search-no-result">
               <p>{% trans 'No properties were found for your search' %}</p>
@@ -71,5 +54,5 @@
 {% endblock %}
 {% block footer_scripts%}
   {{block.super}}
-  <script src="{% static 'build/js/salesearch.bundle.js' %}"></script>
+  <script src="{% static 'build/js/search.bundle.js' %}"></script>
 {% endblock %}

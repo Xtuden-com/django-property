@@ -1,7 +1,7 @@
 window["form"] =
 webpackJsonp_name_([1],{
 
-/***/ 7:
+/***/ 6:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17,7 +17,7 @@ var _ajax = __webpack_require__(0);
 
 var _ajax2 = _interopRequireDefault(_ajax);
 
-var _validator = __webpack_require__(8);
+var _validator = __webpack_require__(7);
 
 var _validator2 = _interopRequireDefault(_validator);
 
@@ -105,7 +105,7 @@ exports.default = Form;
 
 /***/ }),
 
-/***/ 8:
+/***/ 7:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -178,4 +178,4 @@ exports.default = Validator;
 
 /***/ })
 
-},[7]);
+},[6]);

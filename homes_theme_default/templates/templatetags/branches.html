@@ -1,0 +1,11 @@
+{% if branches %}
+    {% for branch in branches %}
+        {% if forloop.first %}<div class="row">{% endif %}
+        <div class="col">
+            <p><a href="{% url 'agents:branch' branch.slug %}">{{ branch.name }}</a></p>
+            <p>{{ branch.telephone }}</p>
+        </div>
+        {% if forloop.counter|divisibleby:4 and not forloop.last%}</div><div class="row">{% endif %}
+        {% if forloop.last %}</div>{% endif %}
+    {% endfor %}
+{% endif %}

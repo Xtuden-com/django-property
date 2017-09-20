@@ -1,0 +1,21 @@
+{% load thumbnail %}
+{% load humanize %}
+{% load static %}
+<article class="article--search-result">
+  <div class="row">
+    <div class="col-xs-12 col-sm-3">
+      {% with property.lettingpicture_set.all|first as picture %}
+        {% thumbnail picture.attachment "285x200" crop="center" as im %}
+            <a href="{% url 'lettings:detail' property.slug %}?{{ request.GET.urlencode }}"><img class="d-block img-fluid" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{picture.caption}}" title="{{picture.caption}}"></a>
+        {% empty %}
+            <a href="{% url 'lettings:detail' property.slug %}?{{ request.GET.urlencode }}"><img class="d-block img-fluid" src="{% static 'build/img/awaiting.png' %}"></a>
+        {% endthumbnail %}
+      {% endwith %}
+    </div>
+    <div class="col-xs-12 col-sm-9">
+      <h2 class="article--search-result__title"><a href="{% url 'lettings:detail' property.slug %}?{{ request.GET.urlencode }}">{{property.title}}</a></h2>
+      <h3 class="article--search-result__display-address">{{ property.display_address }}<span class="article--search-result__price">&#163;{{property.rental|floatformat|intcomma}} {{property.get_period_display}}</span></h3>
+      <p>{{property.summary}}</p>
+    </div>
+  </div>
+</article>

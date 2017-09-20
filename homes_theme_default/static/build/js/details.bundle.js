@@ -1,7 +1,7 @@
 window["details"] =
 webpackJsonp_name_([0],{
 
-/***/ 5:
+/***/ 4:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15,7 +15,7 @@ var _autocomplete = __webpack_require__(2);
 
 var _autocomplete2 = _interopRequireDefault(_autocomplete);
 
-var _toggler = __webpack_require__(6);
+var _toggler = __webpack_require__(5);
 
 var _toggler2 = _interopRequireDefault(_toggler);
 
@@ -29,7 +29,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 /***/ }),
 
-/***/ 6:
+/***/ 5:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -97,4 +97,4 @@ exports.default = Toggler;
 
 /***/ })
 
-},[5]);
+},[4]);

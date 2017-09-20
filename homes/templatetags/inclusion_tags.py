@@ -1,6 +1,6 @@
 from django import template
 
-from homes.models import Block, SEO
+from homes.models import Block, SEO, Branch
 
 register = template.Library()
 
@@ -33,4 +33,11 @@ def page_meta(context):
     return{
         'instance': SEO.objects.filter(url=context['request'].path).first(),
         'request': context['request']
+    }
+
+
+@register.inclusion_tag('templatetags/branches.html')
+def branch_list():
+    return {
+        'branches': Branch.active.all()
     }

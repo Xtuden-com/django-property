@@ -15,8 +15,7 @@ const gulp = require('gulp'),
 const webpackConfig = {
   context: path.resolve(__dirname, './js'),
   entry: {
-    home: './home.js',
-    salesearch: './salesearch.js',
+    search: './search.js',
     details: './details.js',
     form: './components/form.js',
   },

@@ -1,0 +1,23 @@
+{% extends "base.html" %}]
+{% load static %}
+{% block content %}
+    {% include 'includes/search-form.html' %}
+    <section class="section--agent-branch-page">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    {% for property in featured.sale %}
+                        {% include "includes/homes-for-sale-search-result.html" %}
+                    {% endfor %}
+                    {% for property in featured.letting %}
+                        {% include "includes/homes-to-let-search-result.html" %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+{% block footer_scripts%}
+  {{block.super}}
+  <script src="{% static 'build/js/search.bundle.js' %}"></script>
+{% endblock %}
