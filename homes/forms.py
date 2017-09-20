@@ -1,4 +1,5 @@
 from django import forms
+from django.contrib.auth.forms import AuthenticationForm
 from registration.forms import RegistrationForm
 
 from .models import PropertyType, SearchPrice
@@ -49,3 +50,10 @@ class CustomRegistrationForm(RegistrationForm):
         self.fields['email'].error_messages = {'required':'Email is required'}
         self.fields['password1'].error_messages = {'required':'Password is required'}
         self.fields['password2'].error_messages = {'required':'Password confirmation is required'}
+
+
+class CustomAuthenticationForm(AuthenticationForm):
+    def __init__(self, *args, **kwargs):
+        super(CustomAuthenticationForm, self).__init__(*args, **kwargs)
+        self.fields['username'].error_messages = {'required':'Username is required'}
+        self.fields['password'].error_messages = {'required':'Password is required'}
