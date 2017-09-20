@@ -47,5 +47,6 @@ class LettingContactForm(ModelForm):
             },
         }
 
+
 class LettingDistanceForm(forms.Form):
     distance = forms.ChoiceField(choices=[(10,_('10 Miles')),(20,_('20 Miles'))])
