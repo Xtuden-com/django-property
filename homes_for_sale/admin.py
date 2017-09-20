@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
 from django.contrib import admin
 from django.contrib.gis.db import models
 
@@ -18,25 +15,25 @@ class SaleAdmin(admin.ModelAdmin):
         models.PointField: {"widget": GooglePointFieldWidget}
     }
     fieldsets = (
-        ('General', {
+        (_('General'), {
             'fields': ['title', 'slug', 'status']
         }),
-        ('Address', {
+        (_('Address', {
             'fields': ['address_1', 'address_2', 'address_3', 'town_city', 'county', 'postcode', 'display_address'],
         }),
-        ('Geographic', {
+        (_('Geographic', {
             'fields': ['location']
         }),
-        ('Categorisation', {
+        (_('Categorisation', {
             'fields': ['branch', 'property_tenure', 'property_type', 'bedrooms', 'en_suites', 'receptions', 'garden', 'parking', 'retirement', 'new_home', 'shared_ownership', 'auction']
         }),
-        ('Detail', {
+        (_('Detail', {
             'fields': ['details', 'summary']
         }),
-        ('Price', {
+        (_('Price', {
             'fields': ['price', 'qualifier']
         }),
-        ('Date', {
+        (_('Date', {
             'fields': ['expires_at']
         }),
     )
