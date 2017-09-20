@@ -1,7 +1,8 @@
+from mapwidgets.widgets import GooglePointFieldWidget
+
 from django.contrib import admin
 from django.contrib.gis.db import models
-
-from mapwidgets.widgets import GooglePointFieldWidget
+from django.utils.translation import ugettext as _
 
 from homes_for_sale.models import *
 
