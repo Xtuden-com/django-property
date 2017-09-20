@@ -37,9 +37,5 @@ def delete_link_criteria(criteria):
 
 @register.filter(name='has_group')
 def has_group(user, group_name):
-    try:
-        group = Group.objects.get(name=group_name)
-        has_group = group in user.groups.all()
-    except:
-        has_group = False
-    return has_group
+    group = Group.objects.filter(name=group_name).first()
+    return group in user.groups.all()
