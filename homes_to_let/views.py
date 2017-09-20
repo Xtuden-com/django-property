@@ -1,7 +1,8 @@
 import urllib, hashlib
 from urlparse import urlparse, parse_qsl
 
-from django.views.generic import TemplateView, ListView, DetailView, View
+from django.utils.translation import ugettext as _
+from django.views.generic import ListView, DetailView, View
 from django.shortcuts import HttpResponseRedirect, reverse, Http404
 from django.contrib.gis.geos import GEOSGeometry, GEOSException
 from django.contrib.gis.measure import D
@@ -12,10 +13,6 @@ from homes.views import BaseSearchPageView
 from .models import Letting, LettingFavourite
 from .forms import LettingContactForm, LettingDistanceForm
 from homes.models import Alert
-
-
-class HomePageView(TemplateView):
-    template_name = "homes-to-let-home.html"
 
 
 class SearchPageView(BaseSearchPageView, ListView):
@@ -92,7 +89,7 @@ class DetailPageView(BaseSearchPageView, DetailView):
             queryset = self.get_queryset()
         obj = queryset.filter(slug=self.kwargs['slug']).first()
         if obj is None:
-            raise Http404('Letting matching query does not exist')
+            raise Http404(_('Letting matching query does not exist'))
         return obj
 
 class UpdateDistanceView(View):
@@ -108,4 +105,4 @@ class UpdateDistanceView(View):
             params = self.__get_distance_params(form)
             return HttpResponseRedirect(reverse('lettings:search') + '?' + urllib.urlencode(params))
         else:
-            raise Http404('Distance not chosen')
+            raise Http404(_('Distance not chosen'))

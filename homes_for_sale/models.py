@@ -1,8 +1,4 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
 from django.utils.translation import ugettext as _
-from django.contrib.gis.db import models
 
 from homes.models import *
 
@@ -29,53 +25,53 @@ class Sale(Property):
     filtered = SaleQuerySet.as_manager()
 
     class Meta:
-        verbose_name = "property"
-        verbose_name_plural = "properties"
+        verbose_name = _('property')
+        verbose_name_plural = _('properties')
 
 
 class SaleFeature(Feature):
     property = models.ForeignKey(Sale)
 
     class Meta:
-        verbose_name = "feature"
-        verbose_name_plural = "features"
+        verbose_name = _('feature')
+        verbose_name_plural = _('features')
 
 
 class SalePicture(Picture):
     property = models.ForeignKey(Sale)
 
     class Meta:
-        verbose_name = "picture"
-        verbose_name_plural = "pictures"
+        verbose_name = _('picture')
+        verbose_name_plural = _('pictures')
 
 
 class SaleMedia(Media):
     property = models.ForeignKey(Sale)
 
     class Meta:
-        verbose_name = "media item"
-        verbose_name_plural = "media items"
+        verbose_name = _('media item')
+        verbose_name_plural = _('media items')
 
 
 class SaleContact(Contact):
     property = models.ForeignKey(Sale)
 
     class Meta:
-        verbose_name = "contact"
-        verbose_name_plural = "contacts"
+        verbose_name = _('contact')
+        verbose_name_plural = _('contacts')
 
 
 class SaleNote(Note):
     property = models.ForeignKey(Sale)
 
     class Meta:
-        verbose_name = "note"
-        verbose_name_plural = "notes"
+        verbose_name = _('note')
+        verbose_name_plural = _('notes')
 
 
 class SaleFavourite(Favourite):
     property = models.ForeignKey(Sale)
 
     class Meta:
-        verbose_name = "favourite"
-        verbose_name_plural = "favourites"
+        verbose_name = _('favourite')
+        verbose_name_plural = _('favourites')

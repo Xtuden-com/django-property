@@ -1,9 +1,10 @@
+{% load i18n %}
 {% if instance %}
     <title>{{ instance.title }}</title>
     <meta name="keywords" content="{{ instance.keywords }}">
     <meta name="description" content="{{ instance.description }}">
 {% else %}
     <title>Website</title>
-    <meta name="keywords" content="Website Keywords">
-    <meta name="description" content="Website Description">
+    <meta name="keywords" content="{% trans 'Website Keywords' %}">
+    <meta name="description" content="{% trans 'Website Description' %}">
 {% endif %}

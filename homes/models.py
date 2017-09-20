@@ -1,9 +1,8 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
 from ckeditor.fields import RichTextField
 
 from django.contrib.gis.db import models
 from django.contrib.auth.models import User
+from django.utils.translation import ugettext as _
 
 from picklefield.fields import PickledObjectField
 from model_utils.managers import QueryManager
@@ -15,8 +14,8 @@ class SearchPrice(models.Model):
     SEARCH_PRICE_LETTING = 1
     SEARCH_PRICE_SALE = 2
     SEARCH_PRICE_TYPES = (
-        (SEARCH_PRICE_LETTING, 'Letting'),
-        (SEARCH_PRICE_SALE, 'Sale')
+        (SEARCH_PRICE_LETTING, _('Letting')),
+        (SEARCH_PRICE_SALE, _('Sale'))
     )
     type = models.IntegerField(choices=SEARCH_PRICE_TYPES)
     label = models.CharField(max_length=20)
@@ -66,8 +65,8 @@ class Branch(Publishable, Timestampable, models.Model):
 
     class Meta:
         ordering = ['name']
-        verbose_name = "branch"
-        verbose_name_plural = "branches"
+        verbose_name = _('branch')
+        verbose_name_plural = _('branches')
 
 
 class Property(Publishable, Expireable, Timestampable, models.Model):
@@ -99,8 +98,8 @@ class Property(Publishable, Expireable, Timestampable, models.Model):
     class Meta:
         abstract = True
         ordering = ['-updated_at']
-        verbose_name = "property"
-        verbose_name_plural = "properties"
+        verbose_name = _('property')
+        verbose_name_plural = _('properties')
 
 
 class Feature(Timestampable, Orderable, models.Model):
@@ -244,5 +243,5 @@ class SEO(models.Model):
         return self.url
 
     class Meta:
-        verbose_name = 'SEO'
-        verbose_name_plural = 'SEO'
+        verbose_name = _('SEO')
+        verbose_name_plural = _('SEO')

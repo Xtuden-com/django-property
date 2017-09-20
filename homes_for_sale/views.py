@@ -1,7 +1,8 @@
 import urllib, hashlib
 from urlparse import urlparse, parse_qsl
 
-from django.views.generic import TemplateView, ListView, DetailView, View
+from django.utils.translation import ugettext as _
+from django.views.generic import ListView, DetailView, View
 from django.shortcuts import HttpResponseRedirect, reverse
 from django.contrib.gis.geos import GEOSGeometry,GEOSException
 from django.contrib.gis.measure import D
@@ -15,10 +16,6 @@ from .forms import SaleContactForm, SaleDistanceForm
 from homes.models import Alert
 
 
-class HomePageView(TemplateView):
-    template_name = "homes-for-sale-home.html"
-
-
 class SearchPageView(BaseSearchPageView, ListView):
     template_name = "homes-for-sale-search.html"
     form_class = SearchForm
@@ -30,7 +27,7 @@ class SearchPageView(BaseSearchPageView, ListView):
             return GEOSGeometry('POINT(%s %s)' % (self.request.GET.get('longitude'),self.request.GET.get('latitude')), srid=4326)
         except GEOSException as ex:
             super(SearchPageView,self).logger.error(ex)
-            raise Http404('Location not found')
+            raise Http404(_('Location not found'))
 
     def __get_alert_key(self):
         return hashlib.sha1(str(self.__get_request_items())).hexdigest()
@@ -93,7 +90,7 @@ class DetailPageView(BaseSearchPageView, DetailView):
             queryset = self.get_queryset()
         obj = queryset.filter(slug=self.kwargs['slug']).first()
         if obj is None:
-            raise Http404('Sale matching query does not exist')
+            raise Http404(_('Sale matching query does not exist'))
         return obj
 
 
@@ -111,4 +108,4 @@ class UpdateDistanceView(View):
             params = self.__get_distance_params(form)
             return HttpResponseRedirect(reverse('sales:search') + '?' + urllib.urlencode(params))
         else:
-            raise Http404('Distance not chosen')
+            raise Http404(_('Distance not chosen'))

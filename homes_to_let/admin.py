@@ -1,8 +1,5 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
 from django.contrib import admin
-from django.contrib.gis.db import models
+from django.utils.translation import ugettext as _
 
 from mapwidgets.widgets import GooglePointFieldWidget
 
@@ -18,25 +15,28 @@ class LettingAdmin(admin.ModelAdmin):
         models.PointField: {"widget": GooglePointFieldWidget}
     }
     fieldsets = (
-        ('General', {
+        (_('General'), {
             'fields': ['title', 'slug', 'status']
         }),
-        ('Address', {
+        (_('Address'), {
             'fields': ['address_1', 'address_2', 'address_3', 'town_city', 'county', 'postcode', 'display_address'],
         }),
-        ('Geographic', {
+        (_('Geographic'), {
             'fields': ['location']
         }),
-        ('Categorisation', {
-            'fields': ['branch', 'type_of_let', 'property_type', 'bedrooms', 'en_suites', 'receptions', 'garden', 'parking', 'retirement', 'furnished', 'house_share', 'let_agreed']
+        (_('Categorisation'), {
+            'fields': [
+                'branch', 'type_of_let', 'property_type', 'bedrooms', 'en_suites', 'receptions', 'garden', 'parking',
+                'retirement', 'furnished', 'house_share', 'let_agreed'
+            ]
         }),
-        ('Detail', {
+        (_('Detail'), {
             'fields': ['details', 'summary']
         }),
-        ('Price', {
+        (_('Price'), {
             'fields': ['rental', 'period']
         }),
-        ('Date', {
+        (_('Date'), {
             'fields': ['available_at', 'expires_at']
         }),
     )
@@ -53,7 +53,10 @@ class LettingFeatureAdmin(admin.ModelAdmin):
     
 
 class LettingContactAdmin(admin.ModelAdmin):
-    fields = ('property','title','forename','surname','message','telephone','email','country','postcode','more_details','view_property')
+    fields = (
+        'property','title','forename','surname','message','telephone',
+        'email','country','postcode','more_details','view_property'
+    )
 
 
 class LettingPictureAdmin(admin.ModelAdmin):

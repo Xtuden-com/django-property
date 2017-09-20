@@ -1,16 +1,7 @@
-from braces.views import LoginRequiredMixin, GroupRequiredMixin
-
-from django.views.generic import TemplateView
-
 from homes.views import BaseSearchPageView
 from homes.forms import SearchForm
 from homes_for_sale.models import Sale
 from homes_to_let.models import Letting
-
-
-class AgentHomePageView(LoginRequiredMixin, GroupRequiredMixin, TemplateView):
-    template_name = "homes-agent-home.html"
-    group_required = "agent"
 
 
 class AgentBranchHomePageView(BaseSearchPageView):

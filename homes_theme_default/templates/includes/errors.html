@@ -1,7 +1,8 @@
+{% load i18n %}
 {% if form.errors %}
     <div class="alert alert-danger alert-dismissible" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <strong>The following errors have occurred...</strong>
+        <strong>{% trans 'The following errors have occurred...' %}</strong>
         <ul>
         {% for field in form.visible_fields %}
             {% for error in field.errors %}

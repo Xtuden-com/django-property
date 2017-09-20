@@ -1,7 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
-from django.contrib.gis.db import models
 from django.utils.translation import ugettext as _
 
 from homes.models import *
@@ -35,48 +31,48 @@ class Letting(Property):
     filtered = LettingQuerySet.as_manager()
 
     class Meta:
-        verbose_name = "property"
-        verbose_name_plural = "properties"
+        verbose_name = _('property')
+        verbose_name_plural = _('properties')
 
 
 class LettingFeature(Feature):
     property = models.ForeignKey(Letting)
 
     class Meta:
-        verbose_name = "feature"
-        verbose_name_plural = "features"
+        verbose_name = _('feature')
+        verbose_name_plural = _('features')
 
 
 class LettingPicture(Picture):
     property = models.ForeignKey(Letting)
 
     class Meta:
-        verbose_name = "picture"
-        verbose_name_plural = "pictures"
+        verbose_name = _('picture')
+        verbose_name_plural = _('pictures')
 
 
 class LettingMedia(Media):
     property = models.ForeignKey(Letting)
 
     class Meta:
-        verbose_name = "media item"
-        verbose_name_plural = "media items"
+        verbose_name = _('media item')
+        verbose_name_plural = _('media items')
 
 
 class LettingContact(Contact):
     property = models.ForeignKey(Letting)
 
     class Meta:
-        verbose_name = "contact"
-        verbose_name_plural = "contacts"
+        verbose_name = _('contact')
+        verbose_name_plural = _('contacts')
 
 
 class LettingNote(Note):
     property = models.ForeignKey(Letting)
 
     class Meta:
-        verbose_name = "note"
-        verbose_name_plural = "notes"
+        verbose_name = _('note')
+        verbose_name_plural = _('notes')
 
 
 class LettingFavourite(Favourite):
@@ -84,4 +80,4 @@ class LettingFavourite(Favourite):
 
     class Meta:
         verbose_name = "favourite"
-        verbose_name_plural = "favourites"
+        verbose_name_plural = _('favourites')

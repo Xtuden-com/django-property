@@ -1,5 +1,7 @@
 {% load humanize %}
-Latest Properties
+{% load i18n %}
+
+{% trans 'Latest Properties' %}
 
 {% for property in properties %}
 {{property.title}}

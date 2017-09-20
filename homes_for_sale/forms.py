@@ -1,6 +1,9 @@
 from django.forms import ModelForm, Textarea, TextInput, EmailInput, CheckboxInput
+from django.utils.translation import ugettext as _
 from django import forms
+
 from .models import SaleContact
+
 
 class SaleContactForm(ModelForm):
     class Meta:
@@ -22,27 +25,27 @@ class SaleContactForm(ModelForm):
         }
         error_messages = {
             'forename':{
-                'required': 'Forename is required',
+                'required': _('Forename is required'),
             },
             'surname':{
-                'required': 'Surname is required',
+                'required': _('Surname is required'),
             },
             'message':{
-                'required': 'Message is required',
+                'required': _('Message is required'),
             },
             'telephone':{
-                'required': 'Telephone is required',
+                'required': _('Telephone is required'),
             },
             'email':{
-                'required': 'Email address is required',
+                'required': _('Email address is required'),
             },
             'country':{
-                'required': 'Country is required',
+                'required': _('Country is required'),
             },
             'postcode':{
-                'required': 'Postcode is required',
+                'required': _('Postcode is required'),
             },
         }
 
 class SaleDistanceForm(forms.Form):
-    distance = forms.ChoiceField(choices=[(10,'10 Miles'),(20,'20 Miles')])
+    distance = forms.ChoiceField(choices=[(10,_('10 Miles')),(20,_('20 Miles'))])

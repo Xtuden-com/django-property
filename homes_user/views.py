@@ -2,8 +2,9 @@ import hashlib
 
 from braces.views import LoginRequiredMixin, GroupRequiredMixin
 
+from django.utils.translation import ugettext as _
 from django.views.generic import TemplateView, View
-from django.shortcuts import get_object_or_404, reverse, HttpResponseRedirect, HttpResponse
+from django.shortcuts import get_object_or_404, reverse, HttpResponseRedirect
 from django.contrib import messages
 
 from homes_for_sale.models import SaleFavourite, Sale
@@ -29,7 +30,7 @@ class UserFavouriteView(LoginRequiredMixin, GroupRequiredMixin, View):
             favourite = self.__get_letting_favourite(kwargs['slug'])
         if favourite:
             favourite.delete()
-            messages.add_message(request, messages.WARNING, 'You have deleted the selected favourite')
+            messages.add_message(request, messages.WARNING, _('You have deleted the selected favourite'))
         return HttpResponseRedirect(reverse('user:dashboard'))
 
 
@@ -69,8 +70,8 @@ class UserSubscribeView(LoginRequiredMixin, GroupRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         obj, created = self.__get_or_create_alert(self.__get_alert_key())
         if created:
-            messages.add_message(request, messages.SUCCESS, 'You have subscribed to an email alert for this search')
+            messages.add_message(request, messages.SUCCESS, _('You have subscribed to an email alert for this search'))
         else:
             obj.delete()
-            messages.add_message(request, messages.WARNING, 'You were unsubscribed from an email alert for this search')
+            messages.add_message(request, messages.WARNING, _('You were unsubscribed from an email alert for this search'))
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))

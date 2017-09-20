@@ -1,0 +1,23 @@
+{% load static %}
+{% load thumbnail %}
+{% load humanize %}
+
+<article class="article--property-latest">
+  {% with property.salepicture_set.all|first as picture %}
+      <div class="article--property-latest__image">
+        {% thumbnail picture.attachment "255x171" crop="center" as im %}
+            <a href="{% url 'sales:detail' property.slug %}" title="{{ property.title }}"><img class="d-block img-fluid" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{picture.caption}}" title="{{picture.caption}}"></a>
+        {% empty %}
+            <a href="{% url 'sales:detail' property.slug %}" title="{{ property.title }}"><img class="d-block img-fluid" src="{% static 'build/img/awaiting.png' %}"></a>
+        {% endthumbnail %}
+      </div>
+  {% endwith %}
+    <header class="article--property-latest__header">
+        <h2 class="article--property-latest__title"><a href="{% url 'sales:detail' property.slug %}">{{ property.title }}</a></h2>
+        <h3 class="article--property-latest__address">{{ property.display_address }}</h3>
+        <h4 class="article--property-latest__price">{{property.get_qualifier_display}} &#163;{{property.price|floatformat|intcomma}}</h4>
+    </header>
+    <div class="article--property-latest__content">
+        <p>{{ property.summary|truncatewords:16 }}</p>
+    </div>
+</article>

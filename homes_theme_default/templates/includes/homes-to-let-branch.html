@@ -1,5 +1,6 @@
+{% load i18n %}
 <div class="components--branch">
-  <h2>Contact the Branch</h2>
+  <h2>{% trans 'Contact the Branch' %}</h2>
   <p>{{object.branch.name}}</p>
   <p class="components--branch__address"><i class="fa fa-map-pin"></i>&nbsp;{{object.branch.address_1}}, {% if object.branch.address_2 %}{{object.branch.address_2}}{% endif %}{% if object.branch.address_3 %}{{object.branch.address_3}}{% endif %}{{object.branch.town_city}}, {{object.branch.county}}</p>
   <p class="components--branch__phone"><i class="fa fa-phone"></i>&nbsp;<a href="tel:{{object.branch.telephone}}">{{object.branch.telephone}}</a></p>

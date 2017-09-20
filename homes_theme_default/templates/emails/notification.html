@@ -1,52 +1,53 @@
+{% load i18n %}
 <html>
     <head>
-        <title>Contact Notification</title>
+        <title>{% trans 'Contact Notification' %}</title>
     </head>
     <body>
-        <h1>You've received the following contact submission from a visitor to your website...</h1>
+        <h1>{%  trans "You've received the following contact submission from a visitor to your website..." %}</h1>
         <table width="100%">
             <tr>
-                <th width="20%" style="text-align:left">Property:</th>
+                <th width="20%" style="text-align:left">{% trans 'Property' %}:</th>
                 <td>{{property}}</td>
             </tr>
             <tr>
-                <th width="20%" style="text-align:left">Title:</th>
+                <th width="20%" style="text-align:left">{% trans 'Title' %}:</th>
                 <td>{{title}}</td>
             </tr>
             <tr>
-                <th width="20%" style="text-align:left">Forename:</th>
+                <th width="20%" style="text-align:left">{% trans 'Forename' %}:</th>
                 <td>{{forename}}</td>
             </tr>
             <tr>
-                <th width="20%" style="text-align:left">Surname:</th>
+                <th width="20%" style="text-align:left">{% trans 'Surname' %}:</th>
                 <td>{{surname}}</td>
             </tr>
             <tr>
-                <th width="20%" style="text-align:left">Message:</th>
+                <th width="20%" style="text-align:left">{% trans 'Message' %}:</th>
                 <td>{{message}}</td>
             </tr>
             <tr>
-                <th width="20%" style="text-align:left">Telephone:</th>
+                <th width="20%" style="text-align:left">{% trans 'Telephone' %}:</th>
                 <td>{{telephone}}</td>
             </tr>
             <tr>
-                <th width="20%" style="text-align:left">Email:</th>
+                <th width="20%" style="text-align:left">{% trans 'Email' %}:</th>
                 <td>{{email}}</td>
             </tr>
             <tr>
-                <th width="20%" style="text-align:left">Country:</th>
+                <th width="20%" style="text-align:left">{% trans 'Country' %}:</th>
                 <td>{{country}}</td>
             </tr>
             <tr>
-                <th width="20%" style="text-align:left">Postcode:</th>
+                <th width="20%" style="text-align:left">{% trans 'Postcode' %}:</th>
                 <td>{{postcode}}</td>
             </tr>
             <tr>
-                <th width="20%" style="text-align:left">Send More Details:</th>
+                <th width="20%" style="text-align:left">{% trans 'Send More Details' %}:</th>
                 <td>{{details}}</td>
             </tr>
             <tr>
-                <th width="20%" style="text-align:left">Arrange Viewing:</th>
+                <th width="20%" style="text-align:left">{% trans 'Arrange Viewing' %}:</th>
                 <td>{{viewing}}</td>
             </tr>
         </table>

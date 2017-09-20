@@ -1,5 +1,6 @@
+{% load i18n %}
 {% if request.GET %}
 <div class="components--search-button">
-  <p><a href="{% url 'sales:search' %}?{{ request.GET.urlencode }}" class="btn btn-primary btn-block">Back To Search</a></p>
+  <p><a href="{% url 'sales:search' %}?{{ request.GET.urlencode }}" class="btn btn-primary btn-block">{% trans 'Back To Search' %}</a></p>
 </div>
 {% endif %}

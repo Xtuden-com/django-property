@@ -1,8 +1,9 @@
+{% load i18n %}
 {% if block %}
     {{block.content|safe}}
     {% if request.user.is_authenticated and request.user.is_staff %}
     <div class="block--user-action">
-        <a href="{% url 'admin:homes_block_change' block.pk %}" class="btn btn-secondary"><i class="fa fa-pencil"></i>&nbsp;Edit Block</a>
+        <a href="{% url 'admin:homes_block_change' block.pk %}" class="btn btn-secondary"><i class="fa fa-pencil"></i>&nbsp;{% trans 'Edit Block' %}</a>
     </div>
     {% endif %}
 {% endif %}

@@ -1,17 +1,18 @@
-You've received the following contact submission from a visitor to your website...
+{% load i18n %}
+{% trans "You've received the following contact submission from a visitor to your website..." %}
 
-Property: {{property}}
+{% trans 'Property' %}: {{property}}
 
-Title: {{title}}
-Forename: {{forename}}
-Surname: {{surname}}
+{% trans 'Title' %}: {{title}}
+{% trans 'Forename' %}: {{forename}}
+{% trans 'Surname' %}: {{surname}}
 
-Message: {{message}}
+{% trans 'Message' %}: {{message}}
 
-Telephone: {{telephone}}
-Email: {{email}}
-Country: {{country}}
-Postcode: {{postcode}}
+{% trans 'Telephone' %}: {{telephone}}
+{% trans 'Email' %}: {{email}}
+{% trans 'Country' %}: {{country}}
+{% trans 'Postcode' %}: {{postcode}}
 
-Send More Details: {{details}}
-Arrange Viewing: {{viewing}}
+{% trans 'Send More Details' %}: {{details}}
+{% trans 'Arrange Viewing' %}: {{viewing}}

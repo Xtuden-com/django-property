@@ -13,20 +13,20 @@
                 <div class="col-sm-12 col-md-8">
                     <article class="article--property">
                       <header class="article--property__header">
-                        <h2 class="article--property__title">{{object.title}}<span class="article--property__actions"><a href="{% url 'json:favourite' 'letting' object.slug %}" title="{% if favourited %}Click to unfavourite this property{% else %}Click to favourite this property{%endif%}" class="toggle--link" data-active="fa-heart" data-inactive="fa-heart-o">{% if favourited %}<i class="fa fa-heart"></i>{% else %}<i class="fa fa-heart-o"></i>{% endif %}</a></span></h2>
+                        <h2 class="article--property__title">{{object.title}}<span class="article--property__actions"><a href="{% url 'json:favourite' 'letting' object.slug %}" title="{% if favourited %}{% trans 'Click to unfavourite this property' %}{% else %}{% trans 'Click to favourite this property' %}{%endif%}" class="toggle--link" data-active="fa-heart" data-inactive="fa-heart-o">{% if favourited %}<i class="fa fa-heart"></i>{% else %}<i class="fa fa-heart-o"></i>{% endif %}</a></span></h2>
                         <h3 class="article--property__display-address">{{object.display_address}}<span class="article--property__price">&#163;{{object.rental}} {{object.get_period_display}}</span></h3>
                       </header>
                       {% include "includes/homes-to-let-carousel.html" %}
                       <div class="article--property__details">
                         <ul class="nav nav-tabs" id="details" role="tablist">
                           <li class="nav-item">
-                            <a class="nav-link active" id="description-tab" data-toggle="tab" href="#descriptiontab" role="tab" aria-controls="description" aria-expanded="true">Description</a>
+                            <a class="nav-link active" id="description-tab" data-toggle="tab" href="#descriptiontab" role="tab" aria-controls="description" aria-expanded="true">{% trans 'Description' %}</a>
                           </li>
                           <li class="nav-item">
-                            <a class="nav-link" id="map-tab" data-toggle="tab" href="#maptab" role="tab" aria-controls="profile">Map &amp; Streetview</a>
+                            <a class="nav-link" id="map-tab" data-toggle="tab" href="#maptab" role="tab" aria-controls="profile">{% trans 'Map &amp; Streetview' %}</a>
                           </li>
                           <li class="nav-item">
-                            <a class="nav-link" id="downloads-tab" data-toggle="tab" href="#downloadstab" role="tab" aria-controls="profile">Brochures &amp; Floorplans</a>
+                            <a class="nav-link" id="downloads-tab" data-toggle="tab" href="#downloadstab" role="tab" aria-controls="profile">{% trans 'Brochures &amp; Floorplans' %}</a>
                           </li>
                         </ul>
                         <div class="tab-content" id="detailsContent">

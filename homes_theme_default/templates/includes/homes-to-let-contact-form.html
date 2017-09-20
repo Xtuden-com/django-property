@@ -1,63 +1,64 @@
+{% load i18n %}
 <div class="components--contact-form">
-  <h2>Get In Touch</h2>
-  <p>Fill in the form below to get in touch with the agent about this property</p>
+  <h2>{% trans 'Get In Touch' %}</h2>
+  <p>{% trans 'Fill in the form below to get in touch with the agent about this property' %}</p>
   <form class="forms--contact" novalidate action="{% url 'json:contact' 'letting' %}" method="POST">
     <div class="alert" role="alert" style="display:none" tabindex="-1"></div>
     <input name="property" type="hidden" value="{{object.slug}}" id="id_property">
     <div class="form-group">
-      <label for="{{contact.title.id_for_label}}">Title</label>
+      <label for="{{contact.title.id_for_label}}">{% trans 'Title' %}</label>
       <select id="id_title" name="title" class="form-control">
-        <option value="Mr">Mr</option>
-        <option value="Mrs">Mrs</option>
-        <option value="Miss">Miss</option>
-        <option value="Ms">Ms</option>
-        <option value="Mx">Mx</option>
+        <option value="Mr">{% trans 'Mr' %}</option>
+        <option value="Mrs">{% trans 'Mrs' %}</option>
+        <option value="Miss">{% trans 'Miss' %}</option>
+        <option value="Ms">{% trans 'Ms' %}</option>
+        <option value="Mx">{% trans 'Mx' %}</option>
       </select>
     </div>
     <div class="form-group">
-      <label for="{{contact.forename.id_for_label}}">Forename</label>
+      <label for="{{contact.forename.id_for_label}}">{% trans 'Forename' %}</label>
       {{contact.forename}}
     </div>
     <div class="form-group">
-      <label for="{{contact.surname.id_for_label}}">Surname</label>
+      <label for="{{contact.surname.id_for_label}}">{% trans 'Surname' %}</label>
       {{contact.surname}}
     </div>
     <div class="form-group">
-      <label for="{{contact.message.id_for_label}}">Message</label>
+      <label for="{{contact.message.id_for_label}}">{% trans 'Message' %}</label>
       {{contact.message}}
     </div>
     <div class="form-group">
-      <label for="{{contact.telephone.id_for_label}}">Telephone</label>
+      <label for="{{contact.telephone.id_for_label}}">{% trans 'Telephone' %}</label>
       {{contact.telephone}}
     </div>
     <div class="form-group">
-      <label for="{{contact.email.id_for_label}}">Email</label>
+      <label for="{{contact.email.id_for_label}}">{% trans 'Email' %}</label>
       {{contact.email}}
     </div>
     <div class="form-group">
-      <label for="{{contact.country.id_for_label}}">Country</label>
+      <label for="{{contact.country.id_for_label}}">{% trans 'Country' %}</label>
       {{contact.country}}
     </div>
     <div class="form-group">
-      <label for="{{contact.postcode.id_for_label}}">Postcode</label>
+      <label for="{{contact.postcode.id_for_label}}">{% trans 'Postcode' %}</label>
       {{contact.postcode}}
     </div>
     <div class="form-group">
       <label for="{{contact.more_details.id_for_label}}" class="custom-control custom-checkbox">
         {{contact.more_details}}
         <span class="custom-control-indicator"></span>
-        <span class="custom-control-description">Send Property Details</span>
+        <span class="custom-control-description">{% trans 'Send Property Details' %}</span>
       </label>
     </div>
     <div class="form-group">
       <label for="{{contact.view_property.id_for_label}}" class="custom-control custom-checkbox">
         {{contact.view_property}}
         <span class="custom-control-indicator"></span>
-        <span class="custom-control-description">Arrange Property Viewing</span>
+        <span class="custom-control-description">{% trans 'Arrange Property Viewing' %}</span>
       </label>
     </div>
     <button class="g-recaptcha btn btn-primary btn-block" data-sitekey="{{ recaptcha }}" data-callback="submitForm" id="id_send" name="send">
-      Send Message
+      {% trans 'Send Message' %}
     </button>
   </form>
 </div>

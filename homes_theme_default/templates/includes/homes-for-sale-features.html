@@ -1,6 +1,7 @@
+{% load i18n %}
 {% if object.salefeature_set.count > 0 %}
 <div class="components--features">
-  <h2>Features</h2>
+  <h2>{% trans 'Features' %}</h2>
   <ul>
   {% for feature in object.salefeature_set.all %}
       <li>{{feature}}</li>

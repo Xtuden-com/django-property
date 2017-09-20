@@ -2,6 +2,7 @@
 {% load static %}
 {% load thumbnail %}
 {% load inclusion_tags %}
+{% load i18n %}
 {% load humanize %}
 {% block content %}
     {% include 'includes/search-form.html' %}
@@ -11,58 +12,26 @@
                 <div class="col">
                     {% page_block 'lorem' %}
                     <h2>Homes For Sale</h2>
-                    {% for sale in latest.sale %}
+                    {% for property in latest.sale %}
                         {% if forloop.first %}<div class="row">{% endif %}
                         <div class="col-xs-12 col-sm-3">
-                            <article class="article--property-latest">
-                              {% with sale.salepicture_set.all|first as picture %}
-                                  <div class="article--property-latest__image">
-                                    {% thumbnail picture.attachment "255x171" crop="center" as im %}
-                                        <a href="{% url 'sales:detail' sale.slug %}" title="{{ sale.title }}"><img class="d-block img-fluid" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{picture.caption}}" title="{{picture.caption}}"></a>
-                                    {% empty %}
-                                        <a href="{% url 'sales:detail' sale.slug %}" title="{{ letting.title }}"><img class="d-block img-fluid" src="{% static 'build/img/awaiting.png' %}"></a>
-                                    {% endthumbnail %}
-                                  </div>
-                              {% endwith %}
-                                <header class="article--property-latest__header">
-                                    <h2 class="article--property-latest__title"><a href="{% url 'sales:detail' sale.slug %}">{{ sale.title }}</a></h2>
-                                    <h3 class="article--property-latest__address">{{ sale.display_address }}</h3>
-                                    <h4 class="article--property-latest__price">{{sale.get_qualifier_display}} &#163;{{sale.price|floatformat|intcomma}}</h4>
-                                </header>
-                                <div class="article--property-latest__content">
-                                    <p>{{ sale.summary|truncatewords:16 }}</p>
-                                </div>
-                            </article>
+                            {% include "includes/homes-for-sale-latest-result.html" %}
                         </div>
                         {% if forloop.counter|divisibleby:4 and not forloop.last%}</div><div class="row">{% endif %}
                         {% if forloop.last %}</div>{% endif %}
+                    {% empty %}
+                        <p>{% trans 'We have no property currently for sale' %}</p>
                     {% endfor %}
                      <h2>Homes To Let</h2>
-                    {% for letting in latest.let %}
+                    {% for property in latest.let %}
                         {% if forloop.first %}<div class="row">{% endif %}
                         <div class="col-xs-12 col-sm-3">
-                            <article class="article--property-latest">
-                                {% with letting.lettingpicture_set.all|first as picture %}
-                                    <div class="article--property-latest__image">
-                                        {% thumbnail picture.attachment "255x171" crop="center" as im %}
-                                            <a href="{% url 'lettings:detail' letting.slug %}" title="{{ letting.title }}"><img class="d-block img-fluid" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{picture.caption}}" title="{{picture.caption}}"></a>
-                                        {% empty %}
-                                            <a href="{% url 'lettings:detail' letting.slug %}" title="{{ letting.title }}"><img class="d-block img-fluid" src="{% static 'build/img/awaiting.png' %}"></a>
-                                        {% endthumbnail %}
-                                    </div>
-                                {% endwith %}
-                                <header class="article--property-latest__header">
-                                    <h2 class="article--property-latest__title"><a href="{% url 'lettings:detail' letting.slug %}">{{ letting.title }}</a></h2>
-                                    <h3 class="article--property-latest__address">{{ letting.display_address }}</h3>
-                                    <h4 class="article--property-latest__price">&#163;{{letting.rental|floatformat|intcomma}} {{letting.get_period_display}}</h4>
-                                </header>
-                                <div class="article--featured-property__content">
-                                    <p>{{ letting.summary|truncatewords:16 }}</p>
-                                </div>
-                            </article>
+                            {% include "includes/homes-to-let-latest-result.html" %}
                         </div>
                         {% if forloop.counter|divisibleby:4 and not forloop.last%}</div><div class="row">{% endif %}
                         {% if forloop.last %}</div>{% endif %}
+                    {% empty %}
+                        <p>{% trans 'We have no property currently to let' %}</p>
                     {% endfor %}
                 </div>
             </div>

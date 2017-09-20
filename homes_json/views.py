@@ -4,6 +4,7 @@ from requests.exceptions import RequestException
 
 from googleplaces import GooglePlaces, types
 
+from django.utils.translation import ugettext as _
 from django.views.generic import View
 from django.http import HttpResponse
 from django.core import serializers
@@ -90,22 +91,25 @@ class ContactView(View):
                     if form.save():
                         message = self.__get_success_response_object([])
                     else:
-                        message = self.__get_failure_response_object(self.__get_single_message('Unable to save contact'))
+                        message = self.__get_failure_response_object(
+                            self.__get_single_message(_('Unable to save contact'))
+                        )
                 else:
-                    message = self.__get_failure_response_object(self.__get_single_message('Unable to find property'))
+                    message = self.__get_failure_response_object(
+                        self.__get_single_message(_('Unable to find property'))
+                    )
             else:
                 message = self.__get_validation_failure_response_object(form)
         else:
-            message = self.__get_failure_response_object(self.__get_single_message('Invalid captcha verification'))
+            message = self.__get_failure_response_object(self.__get_single_message(_('Invalid captcha verification')))
         return HttpResponse(
             json.dumps(message),
             content_type='application/json'
         )
 
+
 class FavouriteView(View):
     group_required = "general"
-    STATUS_FAILURE = 'failure'
-    STATUS_SUCCESS = 'success'
 
     def __create_letting_favourite(self, slug):
         letting = get_object_or_404(Letting, slug=slug)
@@ -125,7 +129,7 @@ class FavouriteView(View):
         obj.delete()
 
     def __get_single_message(self, status):
-        return {'status':status}
+        return {'status': status}
 
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated:

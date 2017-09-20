@@ -1,7 +1,8 @@
+from mapwidgets.widgets import GooglePointFieldWidget
+
 from django.contrib import admin
 from django.contrib.gis.db import models
-
-from mapwidgets.widgets import GooglePointFieldWidget
+from django.utils.translation import ugettext as _
 
 from homes.models import Block, SEO, SearchPrice, Branch, PropertyTenure, PropertyType, Alert, MediaType
 
@@ -13,19 +14,19 @@ class SearchPriceAdmin(admin.ModelAdmin):
 class BranchAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name',), }
     fieldsets = (
-        ('General', {
+        (_('General'), {
             'fields': ['name', 'slug', 'status']
         }),
-        ('Address', {
+        (_('Address'), {
             'fields': ['address_1', 'address_2', 'address_3', 'town_city', 'county', 'postcode'],
         }),
-        ('Geographic', {
+        (_('Geographic'), {
             'fields': ['location']
         }),
-        ('Contact', {
+        (_('Contact'), {
             'fields': ['telephone', 'email']
         }),
-        ('Details', {
+        (_('Details'), {
             'fields': ['details', 'opening_hours']
         })
     )
