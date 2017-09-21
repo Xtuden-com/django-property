@@ -19,22 +19,22 @@ class SaleAdmin(admin.ModelAdmin):
         (_('General'), {
             'fields': ['title', 'slug', 'status']
         }),
-        (_('Address', {
+        (_('Address'), {
             'fields': ['address_1', 'address_2', 'address_3', 'town_city', 'county', 'postcode', 'display_address'],
         }),
-        (_('Geographic', {
+        (_('Geographic'), {
             'fields': ['location']
         }),
-        (_('Categorisation', {
+        (_('Categorisation'), {
             'fields': ['branch', 'property_tenure', 'property_type', 'bedrooms', 'en_suites', 'receptions', 'garden', 'parking', 'retirement', 'new_home', 'shared_ownership', 'auction']
         }),
-        (_('Detail', {
+        (_('Detail'), {
             'fields': ['details', 'summary']
         }),
-        (_('Price', {
+        (_('Price'), {
             'fields': ['price', 'qualifier']
         }),
-        (_('Date', {
+        (_('Date'), {
             'fields': ['expires_at']
         }),
     )
