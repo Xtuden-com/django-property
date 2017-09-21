@@ -2,20 +2,20 @@
 {% load static %}
 {% load i18n %}
 {% block content %}
-    {% include 'includes/search-form.html' %}
+    {% include 'includes/forms/search.html' %}
     <section class="section--agent-branch-page">
         <div class="container">
             <div class="row">
                 <div class="col">
                     <h2>{% trans 'Homes For Sale' %}</h2>
                     {% for property in featured.sale %}
-                        {% include "includes/homes-for-sale-search-result.html" %}
+                        {% include "includes/homes-for-sale/search-result.html" %}
                     {% empty %}
                         <p>{% trans 'We have no property currently for sale' %}</p>
                     {% endfor %}
                     <h2>{% trans 'Homes To Let' %}</h2>
                     {% for property in featured.letting %}
-                        {% include "includes/homes-to-let-search-result.html" %}
+                        {% include "includes/homes-to-let/search-result.html" %}
                     {% empty %}
                         <p>{% trans 'We have no property currently to let' %}</p>
                     {% endfor %}

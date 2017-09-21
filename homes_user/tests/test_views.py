@@ -160,7 +160,7 @@ class UserDashboardPageViewTestCase(BaseTestCase):
         response = UserDashboardPageView.as_view()(request)
 
         self.assertEqual(response.status_code, 200)
-        self.assertIn('homes-user-dashboard.html', response.template_name)
+        self.assertIn('homes-user/dashboard.html', response.template_name)
 
     def test_get_context(self):
         """

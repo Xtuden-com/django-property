@@ -5,7 +5,7 @@
 {% load i18n %}
 {% load humanize %}
 {% block content %}
-    {% include 'includes/search-form.html' %}
+    {% include 'includes/forms/search.html' %}
     <section class="section--home-page">
         <div class="container">
             <div class="row">
@@ -15,7 +15,7 @@
                     {% for property in latest.sale %}
                         {% if forloop.first %}<div class="row">{% endif %}
                         <div class="col-xs-12 col-sm-3">
-                            {% include "includes/homes-for-sale-latest-result.html" %}
+                            {% include "includes/homes-for-sale/latest-result.html" %}
                         </div>
                         {% if forloop.counter|divisibleby:4 and not forloop.last%}</div><div class="row">{% endif %}
                         {% if forloop.last %}</div>{% endif %}
@@ -26,7 +26,7 @@
                     {% for property in latest.let %}
                         {% if forloop.first %}<div class="row">{% endif %}
                         <div class="col-xs-12 col-sm-3">
-                            {% include "includes/homes-to-let-latest-result.html" %}
+                            {% include "includes/homes-to-let/latest-result.html" %}
                         </div>
                         {% if forloop.counter|divisibleby:4 and not forloop.last%}</div><div class="row">{% endif %}
                         {% if forloop.last %}</div>{% endif %}

@@ -56,7 +56,7 @@ class SearchPageViewTestCase(BaseTestCase):
         response = SearchPageView.as_view()(request)
 
         # Check that the homes-to-let-search.html template is used for this response
-        self.assertIn('homes-to-let-search.html',response.template_name)
+        self.assertIn('homes-to-let/search.html',response.template_name)
 
     def test_get_queryset_long_lat_provided(self):
         """
@@ -199,7 +199,7 @@ class DetailPageViewTestCase(BaseTestCase):
         response = DetailPageView.as_view()(request, slug=letting.slug)
 
         # Check that the correct template is used for the view
-        self.assertIn('homes-to-let-detail.html', response.template_name)
+        self.assertIn('homes-to-let/detail.html', response.template_name)
 
     def test_get_context_contains_keys(self):
         """

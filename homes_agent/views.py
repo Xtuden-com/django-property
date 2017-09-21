@@ -5,7 +5,7 @@ from homes_to_let.models import Letting
 
 
 class AgentBranchHomePageView(BaseSearchPageView):
-    template_name="homes-agent-branch.html"
+    template_name="homes-agent/branch.html"
     form_class = SearchForm
 
     def get_context_data(self, **kwargs):

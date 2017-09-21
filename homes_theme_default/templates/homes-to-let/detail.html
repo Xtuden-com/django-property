@@ -6,7 +6,7 @@
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.0.10/font-awesome-animation.min.css">
 {% endblock %}
 {% block content %}
-    {% include 'includes/search-form.html' %}
+    {% include 'includes/forms/search.html' %}
     <section class="section--property-detail">
         <div class="container">
             <div class="row">
@@ -16,7 +16,7 @@
                         <h2 class="article--property__title">{{object.title}}<span class="article--property__actions"><a href="{% url 'json:favourite' 'letting' object.slug %}" title="{% if favourited %}{% trans 'Click to unfavourite this property' %}{% else %}{% trans 'Click to favourite this property' %}{%endif%}" class="toggle--link" data-active="fa-heart" data-inactive="fa-heart-o">{% if favourited %}<i class="fa fa-heart"></i>{% else %}<i class="fa fa-heart-o"></i>{% endif %}</a></span></h2>
                         <h3 class="article--property__display-address">{{object.display_address}}<span class="article--property__price">&#163;{{object.rental}} {{object.get_period_display}}</span></h3>
                       </header>
-                      {% include "includes/homes-to-let-carousel.html" %}
+                      {% include "includes/homes-to-let/carousel.html" %}
                       <div class="article--property__details">
                         <ul class="nav nav-tabs" id="details" role="tablist">
                           <li class="nav-item">
@@ -52,10 +52,10 @@
                     </article>
                 </div>
                 <div class="col-sm-12 col-md-4">
-                  {% include "includes/homes-to-let-search-button.html" %}
-                  {% include "includes/homes-to-let-branch.html" %}
-                  {% include "includes/homes-to-let-features.html" %}
-                  {% include "includes/homes-to-let-contact-form.html" %}
+                  {% include "includes/homes-to-let/search-button.html" %}
+                  {% include "includes/homes-to-let/branch.html" %}
+                  {% include "includes/homes-to-let/features.html" %}
+                  {% include "includes/homes-to-let/contact-form.html" %}
                 </div>
             </div>
         </div>

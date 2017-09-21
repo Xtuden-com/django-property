@@ -16,7 +16,7 @@ from homes.models import Alert
 
 
 class SearchPageView(BaseSearchPageView, ListView):
-    template_name = "homes-to-let-search.html"
+    template_name = "homes-to-let/search.html"
     form_class = SearchForm
     paginate_by = 9
     model = Letting
@@ -65,7 +65,7 @@ class SearchPageView(BaseSearchPageView, ListView):
 
 
 class DetailPageView(BaseSearchPageView, DetailView):
-    template_name = "homes-to-let-detail.html"
+    template_name = "homes-to-let/detail.html"
     form_class = SearchForm
 
     def __is_user_favourite(self):

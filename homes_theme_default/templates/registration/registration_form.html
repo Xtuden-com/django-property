@@ -11,7 +11,7 @@
       <div class="row">
         <div class="col-12">
           <p>{% trans 'Register for an account using the form below...' %}</p>
-          {% include "includes/errors.html" %}
+          {% include "includes/alerts/errors.html" %}
           <form novalidate method="post" action="{% url 'registration_register' %}">
             <input type="hidden" name="next" value="{{ next }}" />
             {% csrf_token %}

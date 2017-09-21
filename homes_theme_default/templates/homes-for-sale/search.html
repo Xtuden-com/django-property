@@ -3,7 +3,7 @@
 {% load i18n %}
 {% load filter_tags %}
 {% block content %}
-  {% include 'includes/search-form.html' %}
+  {% include 'includes/forms/search.html' %}
   <section class="section--search-extra">
     <div class="container">
       <div class="row">
@@ -38,9 +38,9 @@
     <div class="container">
       <div class="row">
         <div class="col">
-          {% include 'includes/messages.html' %}
+          {% include 'includes/alerts/messages.html' %}
           {% for property in object_list %}
-              {% include "includes/homes-for-sale-search-result.html" %}
+              {% include "includes/homes-for-sale/search-result.html" %}
           {% empty %}
             <article class="article--search-no-result">
               <p>{% trans 'No properties were found for your search' %}</p>

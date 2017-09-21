@@ -35,7 +35,7 @@ class UserFavouriteView(LoginRequiredMixin, GroupRequiredMixin, View):
 
 
 class UserDashboardPageView(LoginRequiredMixin, GroupRequiredMixin, TemplateView):
-    template_name = "homes-user-dashboard.html"
+    template_name = "homes-user/dashboard.html"
     group_required = "general"
 
     def get_context_data(self, **kwargs):
