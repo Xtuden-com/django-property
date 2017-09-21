@@ -10,7 +10,7 @@ from django.shortcuts import Http404, HttpResponseRedirect
 from django.contrib.auth.models import AnonymousUser
 
 from homes.forms import SearchForm
-from homes_to_let.views import HomePageView, SearchPageView, DetailPageView, UpdateDistanceView
+from homes_to_let.views import SearchPageView, DetailPageView, UpdateDistanceView
 from homes_to_let.querysets import LettingQuerySet
 from homes_to_let.forms import LettingDistanceForm, LettingContactForm
 from homes_to_let.factories.letting_factory import LettingFactory
@@ -41,29 +41,6 @@ class BaseTestCase(TestCase):
         url = urlparse(response.url)
         query = dict(parse_qsl(url.query))
         return url, query
-
-
-class HomePageViewTestCase(BaseTestCase):
-    """Tests the homepage for lettings"""
-    def test_template_name(self):
-        """
-        Test that the template name of the view is as expected
-        """
-        request = self.factory.get(reverse('lettings:home'))
-
-        response = HomePageView.as_view()(request)
-
-        self.assertIn('homes-to-let-home.html',response.template_name)
-
-    def test_view_http_response(self):
-        """
-        Test that when hitting the lettings homepage you get a 200
-        """
-        request = self.factory.get(reverse('lettings:home'))
-
-        response = HomePageView.as_view()(request)
-
-        self.assertEquals(response.status_code, 200)
 
 
 class SearchPageViewTestCase(BaseTestCase):
