@@ -41,3 +41,7 @@ def branch_list():
     return {
         'branches': Branch.active.all()
     }
+
+@register.inclusion_tag('templatetags/analytics.html')
+def script_analytics(tid):
+    return {'tid': tid}
