@@ -3,7 +3,7 @@
 {% load humanize %}
 
 <div class="card card--result">
-    <div class="card--result__header card-header">{{ property.town_city }}, {{ property.county }}</div>
+    <div class="card--result__header card-header"><i class="fa fa-map-marker"></i>&nbsp;{{ property.town_city }}, {{ property.county }}</div>
     <div class="card--result__image">
         {% with property.salepicture_set.all|first as picture %}
             {% thumbnail picture.attachment "255x171" crop="center" as im %}
