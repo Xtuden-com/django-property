@@ -1,0 +1,6 @@
+.block--lorem{
+  @extend .spacer-one-rem;
+  p{
+    margin-bottom:0;
+  }
+}

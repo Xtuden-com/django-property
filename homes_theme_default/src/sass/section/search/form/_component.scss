@@ -1,5 +1,8 @@
 .section--search-form{
-  background-color:#ccc;
+  background-color:$section-search-form-bg;
   padding-top:1rem;
   padding-bottom:1rem;
+  label{
+      color:$section-search-form-color;
+  }
 }

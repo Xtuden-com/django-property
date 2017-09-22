@@ -2,22 +2,29 @@
 {% load thumbnail %}
 {% load humanize %}
 
-<article class="article--property-latest">
-  {% with property.salepicture_set.all|first as picture %}
-      <div class="article--property-latest__image">
-        {% thumbnail picture.attachment "255x171" crop="center" as im %}
-            <a href="{% url 'sales:detail' property.slug %}" title="{{ property.title }}"><img class="d-block img-fluid" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{picture.caption}}" title="{{picture.caption}}"></a>
-        {% empty %}
-            <a href="{% url 'sales:detail' property.slug %}" title="{{ property.title }}"><img class="d-block img-fluid" src="{% static 'build/img/awaiting.png' %}"></a>
-        {% endthumbnail %}
-      </div>
-  {% endwith %}
-    <header class="article--property-latest__header">
-        <h2 class="article--property-latest__title"><a href="{% url 'sales:detail' property.slug %}">{{ property.title }}</a></h2>
-        <h3 class="article--property-latest__address">{{ property.display_address }}</h3>
-        <h4 class="article--property-latest__price">{{property.get_qualifier_display}} &#163;{{property.price|floatformat|intcomma}}</h4>
-    </header>
-    <div class="article--property-latest__content">
-        <p>{{ property.summary|truncatewords:16 }}</p>
+<div class="card card--result">
+    <div class="card--result__header card-header">{{ property.title }}</div>
+    <div class="card--result__image">
+        {% with property.salepicture_set.all|first as picture %}
+            {% thumbnail picture.attachment "255x171" crop="center" as im %}
+                <a href="{% url 'sales:detail' property.slug %}" title="{{ property.title }}"><img class="card-img-top"  src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{picture.caption}}" title="{{picture.caption}}"></a>
+            {% empty %}
+                <a href="{% url 'sales:detail' property.slug %}" title="{{ property.title }}"><img class="card-img-top"  src="{% static 'build/img/awaiting.png' %}"></a>
+            {% endthumbnail %}
+        {% endwith %}
     </div>
-</article>
+    <div class="card--result__body card-body">
+        <h2 class="card--result__title card-title"><a href="{% url 'sales:detail' property.slug %}">{{ property.display_address }}</a></h2>
+        <h3 class="card--result__price">{{property.get_qualifier_display}} &#163;{{property.price|floatformat|intcomma}}</h3>
+        <p class="card--result__text card-text">{{ property.summary|truncatewords:16 }}</p>
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item"><i class="fa fa-bed"></i>&nbsp;{{ property.bedrooms }} {% if property.bedrooms > 1 %}Bedrooms{% else %}Bedroom{% endif %}</li>
+        <li class="list-group-item"><i class="fa fa-bath"></i>&nbsp;{{ property.en_suites }} {% if property.en_suites > 1 %}Ensuites{% else %}Ensuite{% endif %}</li>
+        <li class="list-group-item"><i class="fa fa-handshake-o"></i>&nbsp;{{ property.receptions }} {% if property.receptions > 1 %}Reception Rooms {% else %}Reception Room{% endif %}</li>
+
+    </ul>
+    <div class="card-footer">
+        <a href="{% url 'sales:detail' property.slug %}" class="btn btn-block btn-primary">More Details</a>
+    </div>
+</div>

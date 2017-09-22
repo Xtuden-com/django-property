@@ -1,1 +1,8 @@
-
+.navbar{
+  background-color:map_get($theme-colors, 'primary');
+}
+.btn-outline-light {
+  &:hover{
+    background-color: darken(theme_color('primary'),10%);
+  }
+}

@@ -15,6 +15,7 @@ def page_header(title):
 def page_block(context, slug):
     block = Block.objects.filter(slug=slug, status=Block.STATUS_CHOICE_ACTIVE).first()
     return {
+        'slug': slug,
         'block':block,
         'request': context['request']
     }

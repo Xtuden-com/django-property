@@ -11,28 +11,18 @@
             <div class="row">
                 <div class="col">
                     {% page_block 'lorem' %}
-                    <h2>Homes For Sale</h2>
-                    {% for property in latest.sale %}
-                        {% if forloop.first %}<div class="row">{% endif %}
-                        <div class="col-xs-12 col-sm-3">
+                    {% page_block 'latest-homes-for-sale' %}
+                    <div class="card-group spacer-one-rem">
+                        {% for property in latest.sale %}
                             {% include "includes/homes-for-sale/latest-result.html" %}
-                        </div>
-                        {% if forloop.counter|divisibleby:4 and not forloop.last%}</div><div class="row">{% endif %}
-                        {% if forloop.last %}</div>{% endif %}
-                    {% empty %}
-                        <p>{% trans 'We have no property currently for sale' %}</p>
-                    {% endfor %}
-                     <h2>Homes To Let</h2>
+                        {% endfor %}
+                    </div>
+                    {% page_block 'latest-homes-to-let' %}
+                    <div class="card-group">
                     {% for property in latest.let %}
-                        {% if forloop.first %}<div class="row">{% endif %}
-                        <div class="col-xs-12 col-sm-3">
-                            {% include "includes/homes-to-let/latest-result.html" %}
-                        </div>
-                        {% if forloop.counter|divisibleby:4 and not forloop.last%}</div><div class="row">{% endif %}
-                        {% if forloop.last %}</div>{% endif %}
-                    {% empty %}
-                        <p>{% trans 'We have no property currently to let' %}</p>
+                        {% include "includes/homes-to-let/latest-result.html" %}
                     {% endfor %}
+                    </div>
                 </div>
             </div>
         </div>

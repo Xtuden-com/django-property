@@ -1,0 +1,21 @@
+.footer{
+  background-color:$footer-bg;
+  padding-top:1rem;
+  padding-bottom:1rem;
+  color:$footer-color;
+  p{
+    margin:0;
+    padding:0;
+  }
+}
+.footer--copyright{
+  font-size:0.8rem;
+  display:inline-block;
+}
+.footer--name {
+  display:inline-block;
+}
+.footer--bottom{
+  padding-top:1rem;
+  border-top:solid 1px darken($footer-color,20%);
+}

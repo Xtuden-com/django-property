@@ -1,9 +1,15 @@
 {% load i18n %}
 {% if block %}
+    {% if request.user.is_authenticated and request.user.is_staff %}
+    <div class="block block--authenticated block--{{ slug }}">
+    {% else %}
+    <div class="block block--{{ slug }}">
+    {% endif %}
     {{block.content|safe}}
     {% if request.user.is_authenticated and request.user.is_staff %}
-    <div class="block--user-action">
-        <a href="{% url 'admin:homes_block_change' block.pk %}" class="btn btn-secondary"><i class="fa fa-pencil"></i>&nbsp;{% trans 'Edit Block' %}</a>
-    </div>
     {% endif %}
+        <div class="block--authenticated__overlay">
+            <a href="{% url 'admin:homes_block_change' block.pk %}" class="block--authenticated__link"><i class="fa fa-pencil"></i>&nbsp;{% trans 'Edit Block' %}</a>
+        </div>
+    </div>
 {% endif %}

@@ -66,8 +66,8 @@ class HomePageView(BaseSearchPageView):
     def get_context_data(self, **kwargs):
         context = super(HomePageView, self).get_context_data(**kwargs)
         context['latest'] = {
-            'sale': Sale.filtered.published().unexpired().order_by('-created_at')[:6],
-            'let': Letting.filtered.published().unexpired().order_by('-created_at')[:6]
+            'sale': Sale.filtered.published().unexpired().order_by('-created_at')[:4],
+            'let': Letting.filtered.published().unexpired().order_by('-created_at')[:4]
         }
         return context
 
