@@ -34,7 +34,7 @@ class SearchForm(forms.Form):
     search_type = forms.ChoiceField(choices=SEARCH_TYPE_CHOICES, widget=forms.Select(attrs={'class':'form-control'}))
     min_price = forms.ChoiceField()
     max_price = forms.ChoiceField()
-    location = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'class':'form-control'}))
+    location = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Enter location...'}))
     min_bedrooms = forms.ChoiceField(choices=BEDROOM_CHOICES, widget=forms.Select(attrs={'class':'form-control'}))
     property_type = forms.ModelChoiceField(
         PropertyType.active.all(),
