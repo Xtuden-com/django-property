@@ -30,7 +30,7 @@
           <div class="form-group autocomplete__container">
             <label>{% trans 'Location'%}</label>
             {% if form.location.errors %}
-              {{form.location|add_css:'is-invalid'}}
+              {{form.location|add_css:'form-control is-invalid'}}
             {% else %}
               {{form.location}}
             {% endif %}
