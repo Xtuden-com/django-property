@@ -7,9 +7,9 @@
       height:100%;
       left:0;
       top:0;
-      display:block;
+      display:flex;
+      align-items: center;
       background-color: rgba(0,0,0,0.5);
-      text-align:center;
     }
   }
 }
@@ -18,10 +18,14 @@
 }
 .block--authenticated__link{
   color:#fff;
-  position:absolute;
-  top:40%;
+  margin-left:auto;
+  margin-right:auto;
+  padding:0.6rem;
+  background-color:rgba(0,0,0,0.5);
+  border-radius:4px;
   &:hover{
     color:#fff;
     text-decoration:none;
+    background-color:theme_color('primary');
   }
 }
