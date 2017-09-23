@@ -1,0 +1,24 @@
+.section--banner{
+  min-height:300px;
+  display:table;
+  width:100%;
+}
+.section--banner__overlay{
+  display:table-cell;
+  vertical-align:middle;
+}
+.section--banner__title{
+  color:#fff;
+  font-size:2rem;
+  text-align:center;
+}
+.section--banner__subtitle{
+  color:#fff;
+  font-size:1rem;
+  font-weight:300;
+  text-align:center;
+}
+.section--banner__link{
+  text-align:center;
+  margin-bottom:0;
+}
