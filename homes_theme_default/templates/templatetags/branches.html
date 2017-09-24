@@ -1,6 +1,6 @@
 {% load i18n %}
 {% if branches %}
-    <h2>{% trans 'Our Offices' %}</h2>
+    <h2 class="footer__title">{% trans 'Our Branches' %}</h2>
     {% for branch in branches %}
         {% if forloop.first %}<div class="row">{% endif %}
         <div class="col">

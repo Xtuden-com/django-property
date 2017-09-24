@@ -1,6 +1,6 @@
 .footer{
   background-color:$footer-bg;
-  padding-top:1rem;
+  padding-top:2rem;
   padding-bottom:1rem;
   color:$footer-color;
   p{
@@ -8,6 +8,10 @@
     padding:0;
   }
 }
+.footer__title{
+  font-size:1.5rem;
+}
+
 .footer--copyright{
   font-size:0.8rem;
   display:inline-block;
@@ -18,4 +22,7 @@
 .footer--bottom{
   padding-top:1rem;
   border-top:solid 1px darken($footer-color,20%);
+}
+.footer--top{
+  padding-bottom:1rem;
 }
