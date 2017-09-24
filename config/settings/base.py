@@ -203,3 +203,9 @@ RECAPTCHA_VERIFICATION_URL = get_env_variable('RECAPTCHA_VERIFICATION_URL')
 
 # CKEditor
 AWS_QUERYSTRING_AUTH = False
+
+CKEDITOR_CONFIGS = {
+    "default": {
+        "removePlugins": "stylesheetparser",
+    }
+}

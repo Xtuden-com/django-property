@@ -1,0 +1,18 @@
+.block--footer-contact{
+  p{
+    &.telephone{
+      &:before{
+        content:"\f098";
+        font-family: "fontawesome";
+        margin-right:0.2rem;
+      }
+    }
+    &.email{
+      &:before{
+        content:"\f199";
+        font-family:"fontawesome";
+        margin-right:0.2rem;
+      }
+    }
+  }
+}
