@@ -21,19 +21,20 @@ def page_block(context, slug):
     }
 
 
-@register.inclusion_tag('templatetags/banner.html')
-def page_banner(slug):
+@register.inclusion_tag('templatetags/banner.html', takes_context=True)
+def page_banner(context, slug):
     banner = Banner.objects.filter(slug=slug, status=Banner.STATUS_CHOICE_ACTIVE).first()
     return {
         'slug': slug,
         'banner':banner,
+        'request': context['request']
     }
 
 
-@register.inclusion_tag('templatetags/toolbar.html', takes_context=True)
-def page_toolbar(context):
+@register.inclusion_tag('templatetags/admin/links.html', takes_context=True)
+def admin_links(context):
     return {
-        'instance': SEO.objects.filter(url=context['request'].path).first(),
+        'seo': SEO.objects.filter(url=context['request'].path).first(),
         'request': context['request']
     }
 

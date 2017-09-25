@@ -1,0 +1,5 @@
+{% if seo %}
+    <a href="{% url 'admin:homes_seo_change' seo.pk %}" class="btn btn-sm btn-outline-light"><i class="fa fa-globe"></i>&nbsp;Meta</a>
+{% else %}
+    <a href="{% url 'admin:homes_seo_add' %}?url={{ request.path }}" class="btn btn-sm btn-outline-light"><i class="fa fa-globe"></i>&nbsp;Meta</a>
+{% endif %}

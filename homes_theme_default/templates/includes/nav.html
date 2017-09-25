@@ -1,4 +1,5 @@
 {% load i18n %}
+{% load inclusion_tags %}
 <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-faded">
     <div class="container">
         <a class="navbar-brand" href="/">{% trans 'Example Agency' %}</a>
@@ -15,6 +16,7 @@
                     <a href="{% url 'user:dashboard' %}" class="btn btn-sm btn-outline-light"><i class="fa fa-user"></i>&nbsp;Dashboard</a>
                     {% if request.user.is_staff %}
                         <a href="{% url 'admin:index' %}" class="btn btn-sm btn-outline-light"><i class="fa fa-lock"></i>&nbsp;Admin</a>
+                        {% admin_links %}
                     {% endif %}
                     <a href="{% url 'auth_logout' %}" class="btn btn-sm btn-outline-light"><i class="fa fa-sign-out"></i>&nbsp;Logout</a>
                 {% else %}

@@ -6,5 +6,10 @@
             <h3 class="section--banner__subtitle">{{ banner.subtitle }}</h3>
             <p class="section--banner__link"><a href="{{ banner.action }}" class="btn btn-primary">{{ banner.label }}</a></p>
         </div>
+        {% if request.user.is_authenticated and request.user.is_staff %}
+            <div class="section--banner__edit" style="position:absolute;top:70px;left:0">
+                <a href="{% url 'admin:homes_banner_change' banner.pk %}"><i class="fa fa-pencil"></i>&nbsp;Edit Banner</a>
+            </div>
+        {% endif %}
     </section>
 {% endif %}
