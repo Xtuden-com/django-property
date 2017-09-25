@@ -1,6 +1,6 @@
 from django import template
 
-from homes.models import Block, SEO, Branch
+from homes.models import Block, SEO, Branch, Banner
 
 register = template.Library()
 
@@ -18,6 +18,15 @@ def page_block(context, slug):
         'slug': slug,
         'block':block,
         'request': context['request']
+    }
+
+
+@register.inclusion_tag('templatetags/banner.html')
+def page_banner(slug):
+    banner = Banner.objects.filter(slug=slug, status=Banner.STATUS_CHOICE_ACTIVE).first()
+    return {
+        'slug': slug,
+        'banner':banner,
     }
 
 

@@ -1,0 +1,10 @@
+{% load static %}
+{% if banner %}
+    <section class="section--banner" style="background:url('{{ banner.attachment.url }}');background-size:cover;background-position:center;">
+        <div class="section--banner__overlay">
+            <h2 class="section--banner__title">{{ banner.title }}</h2>
+            <h3 class="section--banner__subtitle">{{ banner.subtitle }}</h3>
+            <p class="section--banner__link"><a href="{{ banner.action }}" class="btn btn-primary">{{ banner.label }}</a></p>
+        </div>
+    </section>
+{% endif %}

@@ -4,7 +4,7 @@ from django.contrib import admin
 from django.contrib.gis.db import models
 from django.utils.translation import ugettext as _
 
-from homes.models import Block, SEO, SearchPrice, Branch, PropertyTenure, PropertyType, Alert, MediaType
+from homes.models import Block, Banner, SEO, SearchPrice, Branch, PropertyTenure, PropertyType, Alert, MediaType
 
 
 class SearchPriceAdmin(admin.ModelAdmin):
@@ -57,6 +57,11 @@ class BlockAdmin(admin.ModelAdmin):
     list_display = ('name', 'slug')
     fields = ('name','slug','content','status')
 
+class BannerAdmin(admin.ModelAdmin):
+    prepopulated_fields = {'slug': ('title',), }
+    list_display = ('title', 'slug', 'action', 'label')
+    fields = ('title', 'subtitle', 'action', 'label', 'slug', 'attachment', 'status')
+
 
 class SEOAdmin(admin.ModelAdmin):
     list_display = ('url', 'title')
@@ -64,6 +69,7 @@ class SEOAdmin(admin.ModelAdmin):
 
 admin.site.register(SearchPrice, SearchPriceAdmin)
 admin.site.register(Branch, BranchAdmin)
+admin.site.register(Banner, BannerAdmin)
 admin.site.register(PropertyType, PropertyTypeAdmin)
 admin.site.register(PropertyTenure, PropertyTenureAdmin)
 admin.site.register(MediaType, MediaTypeAdmin)

@@ -5,13 +5,7 @@
 {% load i18n %}
 {% load humanize %}
 {% block content %}
-    <section class="section--banner" style="background:url('{% static 'build/img/header.jpg' %}');background-size:cover;background-position:center;">
-        <div class="section--banner__overlay">
-            <h2 class="section--banner__title">Lorem ipsum dolor</h2>
-            <h3 class="section--banner__subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </h3>
-            <p class="section--banner__link"><a href="" class="btn btn-primary">Do Action</a></p>
-        </div>
-    </section>
+    {% page_banner 'lorem-ipsum-dolor' %}
     {% include 'includes/forms/search.html' %}
     <section class="section--home-page">
         <div class="container">
@@ -19,7 +13,7 @@
                 <div class="col">
                     {% page_block 'lorem' %}
                     {% page_block 'latest-homes-for-sale' %}
-                    <div class="card-group spacer-one-rem">
+                    <div class="card-group spacer-two-rem">
                         {% for property in latest.sale %}
                             {% include "includes/homes-for-sale/latest-result.html" %}
                         {% endfor %}

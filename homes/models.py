@@ -233,6 +233,21 @@ class Block(Publishable, models.Model):
         pass
 
 
+class Banner(Publishable, models.Model):
+    title = models.CharField(max_length=200)
+    subtitle = models.CharField(max_length=1000)
+    slug = models.SlugField(max_length=200, unique=True)
+    action = models.URLField()
+    label = models.CharField(max_length=50)
+    attachment = models.FileField(upload_to='banners/')
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        pass
+
+
 class SEO(models.Model):
     url = models.CharField(max_length=1000, unique=True)
     title = models.CharField(max_length=100)
