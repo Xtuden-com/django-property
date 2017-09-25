@@ -104,7 +104,6 @@ using the ./manage.py loaddata --app=[app name] [fixture path]
 Tests
 ----
 Django tests can be run using ./manage.py test
-There are currently 100 tests
 
 What next
 ----
