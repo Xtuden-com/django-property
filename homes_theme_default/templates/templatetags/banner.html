@@ -8,7 +8,7 @@
         </div>
         {% if request.user.is_authenticated and request.user.is_staff %}
             <div class="section--banner__edit" style="position:absolute;top:70px;left:0">
-                <a href="{% url 'admin:homes_banner_change' banner.pk %}"><i class="fa fa-pencil"></i>&nbsp;Edit Banner</a>
+                <a href="{% url 'admin:homes_banner_change' banner.pk %}"><i class="fa fa-pencil"></i></a>
             </div>
         {% endif %}
     </section>

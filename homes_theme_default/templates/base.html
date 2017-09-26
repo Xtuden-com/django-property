@@ -37,6 +37,7 @@
                         <h2 class="footer__title">Recent Posts</h2>
                     </div>
                     <div class="col-xs-12 col-sm-3">
+                        <h2 class="footer__title">{% trans 'Our Branches' %}</h2>
                         {% branch_list %}
                     </div>
                 </div>
@@ -44,10 +45,10 @@
             <div class="footer--bottom">
                 <div class="row">
                     <div class="col-xs-12 col-sm-2">
-                        <p class="footer--name align-middle">{% trans 'My Agency Website' %}</p>
+                        <p class="footer--name align-middle">{% trans 'Example Agency' %}</p>
                     </div>
                     <div class="col-xs-12 col-sm-10">
-                        <p class="footer--copyright align-middle">&copy; {% now "Y" %} {% trans 'My Agency Website. All Rights Reserved.' %}</p>
+                        <p class="footer--copyright align-middle">&copy; {% now "Y" %} {% trans 'Example Agency. All Rights Reserved.' %}</p>
                     </div>
                 </div>
             </div>

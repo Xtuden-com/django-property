@@ -1,0 +1,17 @@
+.components--branch-footer{}
+.components--branch-footer__name{
+  a{
+    color:#fff;
+    text-decoration:none;
+    &:hover{
+      color:#fff;
+    }
+  }
+}
+.components--branch-footer__telephone{
+  &:before{
+    content:"\f098";
+    font-family: "fontawesome";
+    margin-right:0.2rem;
+  }
+}

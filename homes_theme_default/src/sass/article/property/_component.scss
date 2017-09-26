@@ -23,6 +23,13 @@
 .article--property__actions{
   float:right;
   display:inline-block;
+  a{
+    color:theme_color('primary');
+    &:hover{
+      color:theme-color('primary');
+    }
+  }
+
 }
 .article--property__details .tab-pane{
   margin-top:1rem;
