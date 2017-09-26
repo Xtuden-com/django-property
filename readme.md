@@ -109,12 +109,13 @@ What next
 ----
 As said, work in progress. The following are next...
 
-* Finish functionality to click through from page to edit meta title, description etc
-* Create functionality to load meta based on page URL
 * Additional tests for JS components already built
 * Tests for notification emailer and alert emailer
 * More tests, refactor ContactView post method in homes_json as a bit ugly & nested elses
-* Add pages for estate agent / branches listing property
+* Format pages for estate agent / branches listing property
+* Change format of pages for search result
+* Protection on JSON endpoint for contact form submission
+* Work to remove JQuery dependency entirely (just for bootstrap atm)
 * Tidy up
 * +++
 
