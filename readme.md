@@ -13,6 +13,7 @@ Config
 
 Depends on environment variables as follows:
 
+* DEBUG
 * DATABASE_URL
 * DJANGO_SETTINGS_MODULE
 * SECRET_KEY
@@ -29,6 +30,8 @@ Depends on environment variables as follows:
 * RECAPTCHA_SITE_KEY
 * RECAPTCHA_SECRET_KEY
 * RECAPTCHA_VERIFICATION_URL
+
+DEBUG True|False if in debug mode
 
 Of the above DJANGO_SETTINGS_MODULE needs to be set to whichever
 settings file you are using for the site e.g. config.settings.local
@@ -105,18 +108,15 @@ Tests
 ----
 Django tests can be run using ./manage.py test
 
-What next
+Roadmap
 ----
-As said, work in progress. The following are next...
+As said, work in progress. The ultimate idea is..
 
-* Additional tests for Vanilla JS components already built
-* Tests for notification emailer and alert emailer
-* More tests, refactor ContactView post method in homes_json as a bit ugly & nested elses
-* Protection on JSON endpoint for contact form submission
-* Work to remove JQuery dependency entirely (just for bootstrap atm)
-* Investigate altering location lookup currently hooked into Google Places to be more efficient (e.g. no separate lookup for longitude / latitude )
-* Tidy up
-* +++
+* Module to allow import to the system from portals (Rightmove etc)
+* React Native app for agents pulling data from an API
+* Fork of this project to create a portal project with an API allowing upload of data from sites using this project
+* Agent admin not using default Django Admin UI
+* A module to allow management of letting clients (applications / invoices / repairs notifications etc) 
 
 License
 ----
