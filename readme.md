@@ -110,13 +110,16 @@ Django tests can be run using ./manage.py test
 
 Roadmap
 ----
-As said, work in progress. The ultimate idea is..
+As said, work in progress. The ultimate (future) idea is..
 
 * Module to allow import to the system from portals (Rightmove etc)
-* React Native app for agents pulling data from an API
+* React Native app for public consumption pulling data from an API
 * Fork of this project to create a portal project with an API allowing upload of data from sites using this project
 * Agent admin not using default Django Admin UI
 * A module to allow management of letting clients (applications / invoices / repairs notifications etc) 
+* Functionality to allow advertisers to place their own properties on the site for sale / let
+* React Native app for agents to create properties / upload pictures etc
+* A desktop management app using Electron / NodeJS / React
 
 License
 ----
