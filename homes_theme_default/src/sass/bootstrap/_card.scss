@@ -1,13 +1,40 @@
-.card--result{
-  max-width:25%;
+.card--latest-result{
+  @media(min-width:992px){
+    max-width:25%;
+  }
 }
-.card--result__title{
+.card--latest-result__title{
   font-size:1.2rem;
 }
-.card--result__price{
+.card--latest-result__price{
   font-size:1rem;
 }
-.card--result__image{
+.card--latest-result__image{
   overflow:hidden;
   max-height:170px;
+}
+.card--search-result{
+  margin-bottom:2rem;
+}
+.card--search-result__title{
+  font-size:1.5rem;
+}
+.card--search-result__display-address{
+  font-size:1rem;
+}
+.card--search-result__rental,
+.card--search-result__price{
+  float:right;
+  font-weight:500;
+}
+.card--search-result__last{
+  margin-bottom:0;
+}
+.card--search-result__list{
+  list-style-type:none;
+  margin:0;
+  padding:0;
+}
+.card--search-result__list li{
+  display:inline-block;
 }

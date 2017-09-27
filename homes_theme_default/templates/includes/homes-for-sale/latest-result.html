@@ -2,9 +2,9 @@
 {% load thumbnail %}
 {% load humanize %}
 
-<div class="card card--result">
-    <div class="card--result__header card-header"><i class="fa fa-map-marker"></i>&nbsp;{{ property.town_city }}, {{ property.county }}</div>
-    <div class="card--result__image">
+<div class="card card--latest-result">
+    <div class="card--latest-result__header card-header"><i class="fa fa-map-marker"></i>&nbsp;{{ property.town_city }}, {{ property.county }}</div>
+    <div class="card--latest-result__image">
         {% with property.salepicture_set.all|first as picture %}
             {% thumbnail picture.attachment "255x171" crop="center" as im %}
                 <a href="{% url 'sales:detail' property.slug %}" title="{{ property.title }}"><img class="card-img-top"  src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{picture.caption}}" title="{{picture.caption}}"></a>
@@ -13,10 +13,10 @@
             {% endthumbnail %}
         {% endwith %}
     </div>
-    <div class="card--result__body card-body">
-        <h2 class="card--result__title card-title"><a href="{% url 'sales:detail' property.slug %}">{{ property.display_address }}</a></h2>
-        <h3 class="card--result__price">{{property.get_qualifier_display}} &#163;{{property.price|floatformat|intcomma}}</h3>
-        <p class="card--result__text card-text">{{ property.summary|truncatewords:16 }}</p>
+    <div class="card--latest-result__body card-body">
+        <h2 class="card--latest-result__title card-title"><a href="{% url 'sales:detail' property.slug %}">{{ property.display_address }}</a></h2>
+        <h3 class="card--latest-result__price">{{property.get_qualifier_display}} &#163;{{property.price|floatformat|intcomma}}</h3>
+        <p class="card--latest-result__text card-text">{{ property.summary|truncatewords:16 }}</p>
     </div>
     <ul class="list-group list-group-flush">
         <li class="list-group-item"><i class="fa fa-bed"></i>&nbsp;{{ property.bedrooms }} {% if property.bedrooms > 1 %}Bedrooms{% else %}Bedroom{% endif %}</li>

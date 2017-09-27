@@ -1,21 +1,29 @@
 {% load thumbnail %}
 {% load humanize %}
 {% load static %}
-<article class="article--search-result">
-  <div class="row">
-    <div class="col-xs-12 col-sm-3">
-      {% with property.salepicture_set.all|first as picture %}
-        {% thumbnail picture.attachment "285x200" crop="center" as im %}
-            <a href="{% url 'sales:detail' property.slug %}?{{ request.GET.urlencode }}"><img class="d-block img-fluid" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{picture.caption}}" title="{{picture.caption}}"></a>
-        {% empty %}
-            <a href="{% url 'sales:detail' property.slug %}?{{ request.GET.urlencode }}"><img class="d-block img-fluid" src="{% static 'build/img/awaiting.png' %}"></a>
-        {% endthumbnail %}
-      {% endwith %}
+<div class="card card--search-result{% if last %} card--search-result__last{% endif %}">
+    <div class="card-header"><i class="fa fa-map-marker"></i>&nbsp;{{ property.town_city }}, {{ property.county }}<span class="card--search-result__price">{{property.get_qualifier_display}} &#163;{{property.price|floatformat|intcomma}}</span></div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-xs-12 col-sm-4 col-md-3">
+                {% with property.salepicture_set.all|first as picture %}
+                    {% thumbnail picture.attachment "285x200" crop="center" as im %}
+                        <a href="{% url 'sales:detail' property.slug %}?{{ request.GET.urlencode }}"><img class="d-block img-fluid" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{picture.caption}}" title="{{picture.caption}}"></a>
+                    {% empty %}
+                        <a href="{% url 'sales:detail' property.slug %}?{{ request.GET.urlencode }}"><img class="d-block img-fluid" src="{% static 'build/img/awaiting.png' %}"></a>
+                    {% endthumbnail %}
+                {% endwith %}
+            </div>
+            <div class="col-xs-12 col-sm-8 col-md-9">
+                <h2 class="card--search-result__title"><a href="{% url 'sales:detail' property.slug %}?{{ request.GET.urlencode }}">{{property.title}}</a></h2>
+                <h3 class="card--search-result__display-address">{{ property.display_address }}</h3>
+                <p>{{property.summary}}</p>
+                <ul class="card--search-result__list">
+                    <li><i class="fa fa-bed"></i>&nbsp;{{ property.bedrooms }} {% if property.bedrooms > 1 %}Bedrooms{% else %}Bedroom{% endif %}</li>
+                    <li><i class="fa fa-bath"></i>&nbsp;{{ property.en_suites }} {% if property.en_suites > 1 %}Ensuites{% else %}Ensuite{% endif %}</li>
+                    <li><i class="fa fa-handshake-o"></i>&nbsp;{{ property.receptions }} {% if property.receptions > 1 %}Reception Rooms {% else %}Reception Room{% endif %}</li>
+                </ul>
+            </div>
+        </div>
     </div>
-    <div class="col-xs-12 col-sm-9">
-      <h2 class="article--search-result__title"><a href="{% url 'sales:detail' property.slug %}?{{ request.GET.urlencode }}">{{property.title}}</a></h2>
-      <h3 class="article--search-result__display-address">{{ property.display_address }}<span class="article--search-result__price">{{property.get_qualifier_display}} &#163;{{property.price|floatformat|intcomma}}</span></h3>
-      <p>{{property.summary}}</p>
-    </div>
-  </div>
-</article>
+</div>
