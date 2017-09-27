@@ -114,6 +114,7 @@ As said, work in progress. The following are next...
 * More tests, refactor ContactView post method in homes_json as a bit ugly & nested elses
 * Protection on JSON endpoint for contact form submission
 * Work to remove JQuery dependency entirely (just for bootstrap atm)
+* Investigate altering location lookup currently hooked into Google Places to be more efficient (e.g. no separate lookup for longitude / latitude )
 * Tidy up
 * +++
 
