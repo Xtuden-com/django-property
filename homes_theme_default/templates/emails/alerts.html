@@ -12,7 +12,7 @@
                 <h3>{{property.display_address}}</h3>
                 <h4>{{property.get_qualifier_display}} £{{property.price|floatformat|intcomma}}</h4>
                 <p>{{property.summary}}</p>
-                {% if property.price %}<a href="http://0.0.0.0:8000{% url 'sales:detail' property.slug %}">{% trans 'More Details' %}</a>{% else %}<a href="http://0.0.0.0:8000{% url 'lettings:detail' property.slug %}">{% trans 'More Details' %}</a>{% endif %}
+                <a href="{{ property.get_full_absolute_url }}">{% trans 'More Details' %}</a>
             </div>
         {% endfor %}
     </body>

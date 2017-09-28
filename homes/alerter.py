@@ -72,7 +72,7 @@ class Alerter(object):
                 'recipient': [recipient],
                 'from_email': self.config['from_email'],
                 'reply_to': None,
-                'data': {
+                'context': {
                     'properties': properties
                 },
                 'templates': self.config['templates']

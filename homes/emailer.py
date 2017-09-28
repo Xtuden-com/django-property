@@ -20,7 +20,7 @@ class Emailer(object):
         """
         try:
             template = get_template(filename)
-            return template.render(self.config['data'])
+            return template.render(self.config['context'])
         except TemplateDoesNotExist as ex:
             self.logger.error('Template {} does not exist'.format(filename))
             self.logger.error(ex)

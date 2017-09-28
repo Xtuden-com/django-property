@@ -1,6 +1,5 @@
 {% load humanize %}
 {% load i18n %}
-
 {% trans 'Latest Properties' %}
 
 {% for property in properties %}
@@ -8,5 +7,5 @@
 {{property.get_qualifier_display}} £{{property.price|floatformat|intcomma}}
 {{property.display_address}}
 {{property.summary}}
-{% if property.price %}http://0.0.0.0:8000{% url 'sales:detail' property.slug %}{% else %}http://0.0.0.0:8000{% url 'lettings:detail' property.slug %}{% endif %}
+{{ property.get_full_absolute_url }}
 {% endfor %}

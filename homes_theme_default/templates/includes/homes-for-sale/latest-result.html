@@ -1,20 +1,19 @@
 {% load static %}
 {% load thumbnail %}
 {% load humanize %}
-
 <div class="card card--latest-result">
     <div class="card--latest-result__header card-header"><i class="fa fa-map-marker"></i>&nbsp;{{ property.town_city }}, {{ property.county }}</div>
     <div class="card--latest-result__image">
         {% with property.salepicture_set.all|first as picture %}
             {% thumbnail picture.attachment "255x171" crop="center" as im %}
-                <a href="{% url 'sales:detail' property.slug %}" title="{{ property.title }}"><img class="card-img-top"  src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{picture.caption}}" title="{{picture.caption}}"></a>
+                <a href="{{ property.get_absolute_url }}" title="{{ property.title }}"><img class="card-img-top"  src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{picture.caption}}" title="{{picture.caption}}"></a>
             {% empty %}
-                <a href="{% url 'sales:detail' property.slug %}" title="{{ property.title }}"><img class="card-img-top"  src="{% static 'build/img/awaiting.png' %}"></a>
+                <a href="{{ property.get_absolute_url }}" title="{{ property.title }}"><img class="card-img-top"  src="{% static 'build/img/awaiting.png' %}"></a>
             {% endthumbnail %}
         {% endwith %}
     </div>
     <div class="card--latest-result__body card-body">
-        <h2 class="card--latest-result__title card-title"><a href="{% url 'sales:detail' property.slug %}">{{ property.display_address }}</a></h2>
+        <h2 class="card--latest-result__title card-title"><a href="{{ property.get_absolute_url }}">{{ property.display_address }}</a></h2>
         <h3 class="card--latest-result__price">{{property.get_qualifier_display}} &#163;{{property.price|floatformat|intcomma}}</h3>
         <p class="card--latest-result__text card-text">{{ property.summary|truncatewords:16 }}</p>
     </div>
@@ -25,6 +24,6 @@
 
     </ul>
     <div class="card-footer">
-        <a href="{% url 'sales:detail' property.slug %}" class="btn btn-block btn-primary">More Details</a>
+        <a href="{{ property.get_absolute_url }}" class="btn btn-block btn-primary">More Details</a>
     </div>
 </div>

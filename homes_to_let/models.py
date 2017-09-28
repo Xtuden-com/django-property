@@ -1,4 +1,6 @@
 from django.utils.translation import ugettext as _
+from django.urls import reverse
+from django.contrib.sites.models import Site
 
 from homes.models import *
 from .querysets import LettingQuerySet
@@ -29,6 +31,13 @@ class Letting(Property):
     let_agreed = models.BooleanField(default=False)
     available_at = models.DateTimeField()
     filtered = LettingQuerySet.as_manager()
+
+    def get_absolute_url(self):
+        return reverse('lettings:detail', kwargs={'slug':self.slug})
+
+    def get_full_absolute_url(self):
+        site = Site.objects.get_current()
+        return '{}{}'.format(str(site.domain), self.get_absolute_url())
 
     class Meta:
         verbose_name = _('property')

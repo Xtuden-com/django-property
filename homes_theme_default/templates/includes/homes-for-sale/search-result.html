@@ -8,14 +8,14 @@
             <div class="col-xs-12 col-sm-4 col-md-3">
                 {% with property.salepicture_set.all|first as picture %}
                     {% thumbnail picture.attachment "285x200" crop="center" as im %}
-                        <a href="{% url 'sales:detail' property.slug %}?{{ request.GET.urlencode }}"><img class="d-block img-fluid" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{picture.caption}}" title="{{picture.caption}}"></a>
+                        <a href="{{ property.get_absolute_url }}?{{ request.GET.urlencode }}"><img class="d-block img-fluid" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{picture.caption}}" title="{{picture.caption}}"></a>
                     {% empty %}
-                        <a href="{% url 'sales:detail' property.slug %}?{{ request.GET.urlencode }}"><img class="d-block img-fluid" src="{% static 'build/img/awaiting.png' %}"></a>
+                        <a href="{{ property.get_absolute_url }}?{{ request.GET.urlencode }}"><img class="d-block img-fluid" src="{% static 'build/img/awaiting.png' %}"></a>
                     {% endthumbnail %}
                 {% endwith %}
             </div>
             <div class="col-xs-12 col-sm-8 col-md-9">
-                <h2 class="card--search-result__title"><a href="{% url 'sales:detail' property.slug %}?{{ request.GET.urlencode }}">{{property.title}}</a></h2>
+                <h2 class="card--search-result__title"><a href="{{ property.get_absolute_url }}?{{ request.GET.urlencode }}">{{property.title}}</a></h2>
                 <h3 class="card--search-result__display-address">{{ property.display_address }}</h3>
                 <p>{{property.summary}}</p>
                 <ul class="card--search-result__list">
