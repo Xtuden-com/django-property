@@ -56,7 +56,7 @@ class SearchPageView(BaseSearchPageView, ListView):
 
     def get_context_data(self, **kwargs):
         context = super(SearchPageView, self).get_context_data(**kwargs)
-        context['distance'] = LettingDistanceForm()
+        context['distance'] = LettingDistanceForm({'distance': self.request.GET.get('distance',10)})
         if self.request.user.is_authenticated:
             context['subscribed'] = self.__is_user_subscribed()
         else:
