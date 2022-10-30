@@ -12,7 +12,7 @@ django-js-asset==0.1.1
 django-map-widgets==0.1.9
 django-model-utils==3.0.0
 django-picklefield==1.0.0
-django-registration==2.2
+django-registration==3.1.2
 django-storages==1.6.3
 factory-boy==2.8.1
 Faker==0.7.17
@@ -29,7 +29,7 @@ python-dateutil==2.6.1
 python-google-places==1.4.0
 pytz==2017.2
 ratelim==0.1.6
-requests==2.18.2
+requests==2.20
 six==1.10.0
 sorl-thumbnail==12.4a1
-urllib3==1.22
+urllib3==1.26.5
