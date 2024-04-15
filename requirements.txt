@@ -18,7 +18,7 @@ factory-boy==2.8.1
 Faker==0.7.17
 funcsigs==1.0.2
 geocoder==1.23.2
-idna==2.5
+idna==3.7
 ipaddress==1.0.18
 mock==2.0.0
 olefile==0.44
